@@ -32,7 +32,7 @@
 #### ERD
 ![ERD](./imgs/ERD.png)
 #### Wireframe
-![Wireframe]()
+[Wireframe](https://www.figma.com/proto/cOWrBpZMVUvuhdoyK28fBW/Book---Glow?node-id=0-1&t=wtiKJ1FbfEvCFCzG-1)
 
 ***
 
