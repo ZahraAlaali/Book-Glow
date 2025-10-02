@@ -23,7 +23,7 @@ app.use(morgan("dev"))
 const session = require("express-session")
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SECRET_SEESION,
     resave: false,
     saveUninitialized: true,
   })
@@ -33,14 +33,12 @@ app.use(
 // app.use(passUser)
 
 // Auth Router
-const authRouter = require("./routes/authRouter")
-app.use("/auth", authRouter)
+// const authRouter = require("./routes/authRouter")
+// app.use("/auth", authRouter)
 
-// User Router
-const userRouter = require("./routes/userRouter")
-app.use("/users", isSignedIn, userRouter)
-
-
+// // User Router
+// const userRouter = require("./routes/userRouter")
+// app.use("/users", isSignedIn, userRouter)
 
 app.get("/", (req, res) => {
   res.render("index.ejs")
