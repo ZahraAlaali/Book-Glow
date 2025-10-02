@@ -6,8 +6,12 @@
     <title>Document</title>
   </head>
   <body>
-    <a href="/auth/sign-in">Sign In</a>
-    <a href="/auth/sign-up"> Sign Up</a>
-    <a href="/auth/sign-out">Sign Out</a>
+    <%- include("../partials/_navbar.ejs") %>
+
+    <h1><%= user.role %></h1>
+
+    <% salons.forEach(salon=>{%>
+    <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
+    <%}) %>
   </body>
 </html>

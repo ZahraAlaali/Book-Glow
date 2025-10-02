@@ -18,7 +18,7 @@ app.use(methodOverride("_method"))
 const morgan = require("morgan")
 app.use(morgan("dev"))
 
-// const isSignedIn = require("./Middlewares/isSignedIn")
+const isSignedIn = require("./Middlewares/isSignedIn")
 
 const session = require("express-session")
 app.use(
@@ -29,12 +29,16 @@ app.use(
   })
 )
 
-// const passUser = require("./Middlewares/pass-user")
-// app.use(passUser)
+const passUser = require("./Middlewares/passUser")
+app.use(passUser)
 
 // Auth Router
-// const authRouter = require("./routes/authRouter")
-// app.use("/auth", authRouter)
+const authRouter = require("./routes/auth")
+app.use("/auth", authRouter)
+
+// Salon Router
+const salonRouter = require("./routes/salonsRouter")
+app.use("/salon", salonRouter)
 
 // // User Router
 // const userRouter = require("./routes/userRouter")
@@ -43,9 +47,6 @@ app.use(
 app.get("/", (req, res) => {
   res.render("index.ejs")
 })
-
-const authRouter = require('./routes/auth')
-app.use('/auth', authRouter)
 
 app.listen(PORT, () => {
   console.log(`Running Server on Port ${PORT} . . . `)

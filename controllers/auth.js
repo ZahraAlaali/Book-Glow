@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const User = require("../models/User.js")
+const Salon = require("../models/Salon")
 
 exports.auth_signUp_get = async (req, res) => {
   res.render("auth/sign-up.ejs")
@@ -14,34 +15,36 @@ exports.auth_signUp_post = async (req, res) => {
     return res.send("This Account Already exist!")
   }
 
-  if (req.body.password !== req.body.confirmsPassword) {
+  if (req.body.password !== req.body.confirmPassword) {
     return res.send("Password and confirm password must match")
   }
 
-  const hashedPassword = bcrypt.hashSync(req.body.password,10)
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10)
   req.body.password = hashedPassword
 
   const user = await User.create(req.body)
-  res.send(`Welcome ${user.username}`)
+  res.render("auth/sign-in.ejs")
 }
 
-
-exports.auth_signin_get =  async (req, res) => {
+exports.auth_signin_get = async (req, res) => {
   res.render("auth/sign-in.ejs")
 }
 
 exports.auth_signin_post = async (req, res) => {
-  const userInDatabase = await User.findOne({ username: req.body.username});
-  if(!userInDatabase){
+  const userInDatabase = await User.findOne({ username: req.body.username })
+  if (!userInDatabase) {
     return res.send("Login failed. Please try again later...")
-}
+  }
 
   req.session.user = {
     username: userInDatabase.username,
-    _id: userInDatabase._id
-  };
+    _id: userInDatabase._id,
+    role: userInDatabase.role,
+  }
 
-  res.redirect("/");
+  const salons = await Salon.find()
+
+  res.render("salons/index.ejs", { salons, user: req.session.user })
 }
 
 exports.signOut = async (req, res) => {
@@ -66,4 +69,3 @@ exports.UpdatePassword = async (req, res) => {
 
   res.send("password updated")
 }
-
