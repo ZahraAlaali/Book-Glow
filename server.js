@@ -33,12 +33,12 @@ app.use(
 // app.use(passUser)
 
 // Auth Router
-const authRouter = require("./routes/authRouter")
-app.use("/auth", authRouter)
+// const authRouter = require("./routes/authRouter")
+// app.use("/auth", authRouter)
 
-// User Router
-const userRouter = require("./routes/userRouter")
-app.use("/users", isSignedIn, userRouter)
+// // User Router
+// const userRouter = require("./routes/userRouter")
+// app.use("/users", isSignedIn, userRouter)
 
 
 
