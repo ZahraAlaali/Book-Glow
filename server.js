@@ -23,7 +23,7 @@ app.use(morgan("dev"))
 const session = require("express-session")
 app.use(
   session({
-    secret: process.env.SECRET_SEESION,
+    secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: true,
   })
@@ -43,6 +43,9 @@ app.use(
 app.get("/", (req, res) => {
   res.render("index.ejs")
 })
+
+const authRouter = require('./routes/auth')
+app.use('/auth', authRouter)
 
 app.listen(PORT, () => {
   console.log(`Running Server on Port ${PORT} . . . `)
