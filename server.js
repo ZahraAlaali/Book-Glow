@@ -32,7 +32,7 @@ app.use(
 // const passUser = require("./Middlewares/pass-user")
 // app.use(passUser)
 
-// // Auth Router
+// Auth Router
 // const authRouter = require("./routes/authRouter")
 // app.use("/auth", authRouter)
 
@@ -40,10 +40,8 @@ app.use(
 // const userRouter = require("./routes/userRouter")
 // app.use("/users", isSignedIn, userRouter)
 
-
-
 app.get("/", (req, res) => {
-  res.render('index.ejs')
+  res.render("index.ejs")
 })
 
 app.listen(PORT, () => {
