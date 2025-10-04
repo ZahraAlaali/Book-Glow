@@ -14,3 +14,14 @@ exports.addService = async (req, res) => {
     res.send({ service })
   } else res.send("error")
 }
+
+// Get edit page
+exports.editService = async (req, res) => {
+  const service = await Service.findOne({
+    _id: req.params.serviceId,
+    salonId: req.params.salonId,
+  })
+  if (service) {
+    res.render("services/edit.ejs", { service, salonId: req.params.salonId })
+  } else res.send("error")
+}
