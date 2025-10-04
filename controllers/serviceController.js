@@ -25,3 +25,13 @@ exports.editService = async (req, res) => {
     res.render("services/edit.ejs", { service, salonId: req.params.salonId })
   } else res.send("error")
 }
+
+// Update salon's service
+exports.UpdateService = async (req, res) => {
+  const salonInDatabase = await Salon.findById(req.params.salonId)
+  if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
+    await Service.findByIdAndUpdate(req.params.serviceId, req.body)
+    res.send("updated successfully")
+    // res.redirect(`/salon/${req.params.salonId}`)
+  } else res.send("error")
+}
