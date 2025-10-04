@@ -1,0 +1,11 @@
+<form action="/service/<%= salon._id %>" method="post">
+  <label for="name">Service Title</label>
+  <input type="text" name="name" required />
+  <br />
+
+  <label for="price">Starting Price</label>
+  <input type="number" name="price" min="0" required />
+  <br />
+
+  <button type="submit">Add Service</button>
+</form>

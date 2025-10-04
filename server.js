@@ -18,7 +18,7 @@ app.use(methodOverride("_method"))
 const morgan = require("morgan")
 app.use(morgan("dev"))
 
-const isSignedIn = require("./Middlewares/isSignedIn")
+const isSignedIn = require("./Middlewares/isSignedIn.js")
 
 const session = require("express-session")
 app.use(
@@ -39,6 +39,9 @@ app.use("/auth", authRouter)
 // Salon Router
 const salonRouter = require("./routes/salonsRouter")
 app.use("/salon", salonRouter)
+
+const serviceRouter = require("./routes/serviceRouter")
+app.use("/service", serviceRouter)
 
 // // User Router
 // const userRouter = require("./routes/userRouter")
