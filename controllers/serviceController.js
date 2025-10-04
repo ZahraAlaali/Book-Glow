@@ -5,6 +5,7 @@ exports.addService_get = async (req, res) => {
   const salon = { _id: "68de6ea59b85efa19f5de528" }
   res.render("services/create.ejs", { salon })
 }
+
 // Create salon's services
 exports.addService = async (req, res) => {
   const salonInDatabase = await Salon.findById(req.params.salonId)
@@ -33,5 +34,14 @@ exports.UpdateService = async (req, res) => {
     await Service.findByIdAndUpdate(req.params.serviceId, req.body)
     res.send("updated successfully")
     // res.redirect(`/salon/${req.params.salonId}`)
+  } else res.send("error")
+}
+
+// delete service
+exports.deleteService = async (req, res) => {
+  const salonInDatabase = await Salon.findById(req.params.salonId)
+  if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
+    await Service.findByIdAndDelete(req.params.serviceId)
+    res.redirect(`/salon/${req.params.salonId}`)
   } else res.send("error")
 }
