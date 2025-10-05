@@ -1,3 +1,7 @@
 .addService{
   visibility: hidden;
 }
+.editService{
+  visibility: hidden;
+}
+
