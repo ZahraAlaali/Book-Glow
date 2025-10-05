@@ -5,7 +5,7 @@ exports.appointment_index_get = async (req, res) => {
   const appointments = await Appointment.find({ user: req.session.user._id })
     .populate("userId")
     .populate("salonId")
-  res.render("appointments/index.ejs", { appointments })
+    res.render("appointments/index.ejs", { appointments })
 }
 
 exports.appointment_create_get = async (req, res) => {
@@ -47,10 +47,9 @@ exports.appointment_update_put = async (req, res) => {
 }
 
 exports.appointment_delete_delete = async (req, res) => {
-  const appointment = await Appointment.findById(req.params.appointmentId)
-  if (appointment.userId.equals(req.session.user._id)) {
-    await Appointment.findByIdAndDelete(req.params.appointmentId)
-    res.redirect("/appointments")
+  const appointment = await Appointment.findByIdAndDelete(req.body.appointment)
+  if (appointment) {
+    res.redirect(`/salon/${req.params.salonId}`)
   } else {
     res.send("You don't have permission to edit this appointment")
   }
