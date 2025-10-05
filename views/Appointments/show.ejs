@@ -6,7 +6,7 @@
 <p>Salon: <% appointment.salon %></p>
 
 
-  <a href="/appointments/<%= appontment._id %>/edit">Edit this appointment</a>
+<a href="/appointments/<%= appontment._id %>/edit">Edit this appointment</a>
 <form action="/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
   <button type="submit">Cancel this appointment!</button>
 </form>

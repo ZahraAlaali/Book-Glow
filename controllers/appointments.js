@@ -1,5 +1,5 @@
 const Appointment = require("../models/Appointments")
-const Salon = require("../models/salon")
+const Salon = require("../models/Salon")
 
 exports.appointment_index_get = async (req, res) => {
   const appointments = await Appointment.find({user: req.session.user._id}).populate("userId").populate("salonId");
