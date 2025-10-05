@@ -1,0 +1,19 @@
+<%- include('../partials/_navbar') %>
+
+<h1>Book a new Appointment</h1>
+
+<form action="/appointments" method="post">
+<label for="dateTime">Date & Time</label>
+<input type="datetime-local" name="dateTime" id="dateTime" />
+<br>
+
+<label for="salonId">Choose a Salon:</label>
+<select name="salonId" id="salonId">
+  <% salons.forEach(salon => { %>
+  <option value="<%= salon._id%>"><%= salon.name %></option>
+  <% }) %>
+</select>
+<br>
+
+<button type="submit">Book Appointment</button>
+</form>
