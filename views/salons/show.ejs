@@ -1,0 +1,22 @@
+<%- include('../partials/_navbar.ejs') %>
+
+
+<% if(user.role === 'user'){%>
+<p>Salon Name: <%=salon.name%></p>
+<button>Book Appointment</button>
+<% } %>
+
+
+<% if(user.role === 'owner'){%>
+  <p>Name: <%= salon.name %></p>
+  <p>Phone: <%= salon.phone %></p>
+  <p>Location: <%= salon.location %></p>
+
+  <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
+  <br><br>
+  <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
+    <button type="submit">Delete</button>
+  </form>
+  <br>
+
+<% } %>

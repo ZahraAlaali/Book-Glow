@@ -1,0 +1,21 @@
+<%- include('../partials/_navbar.ejs') %>
+<h1>Create a New Salon</h1>
+
+<form action="/salon/create" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" />
+
+  <br />
+
+  <label for="location">Location</label>
+  <input type="text" name="location" />
+
+  <br>
+
+  <label for="phone">Phone Number</label>
+  <input type="number" name="phone" />
+
+  <br>
+
+  <button type="submit">Add Your Salon</button>
+</form>

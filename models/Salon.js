@@ -1,14 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const salonSchema = new mongoose.Schema(
   {
     name: String,
-    location:String,
-    ownerId: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    location: String,
+    phone: Number,
+    ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 )
 
-const Salon = mongoose.model('Salon',salonSchema)
+const Salon = mongoose.model("Salon", salonSchema)
 
 module.exports = Salon

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("../partials/_navbar.ejs") %>
+
+    <h1><%= user.role %></h1>
+
+    <% if(user.role === 'owner'){ %>
+      <h2>My Salons:</h2>
+      <% salons.forEach(salon=>{%>
+        <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
+        <br>
+        <%}) %>
+        <br>
+        <a href="/salon/create"><button>Add Salon</button></a>
+      <% } %>
+
+    <% if(user.role == 'user'){ %> <% salons.forEach(salon=>{%>
+      <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
+      <br>
+      <%}) %>
+    <% } %>
+  </body>
+</html>
