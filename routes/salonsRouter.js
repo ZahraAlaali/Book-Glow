@@ -10,6 +10,6 @@ router.get("", salonCtrl.get_index)
 router.get("/:salonId", salonCtrl.salon_show_get)
 
 router.get('/:salonId/edit' , salonCtrl.salon_edit_get)
-router.get('/:salonId' , salonCtrl.salon_update_put)
+router.put('/:salonId' , salonCtrl.salon_update_put)
 
 module.exports = router
