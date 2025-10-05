@@ -1,7 +1,6 @@
 const Salon = require("../models/Salon.js")
 const Service = require("../models/Service")
-const User = require("../models/User.js")
-const Appointment = require('../models/Appointment.js')
+const Appointment = require('../models/Appointment')
 
 exports.salon_create_get = async (req, res) => {
   res.render("salons/create.ejs")

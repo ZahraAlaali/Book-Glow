@@ -4,7 +4,6 @@ const appointmentSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     salonId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -12,7 +11,7 @@ const appointmentSchema = new mongoose.Schema(
       required: true,
     },
     dateTime: { type: Date, require: true },
-    time : { type : Date, default: Date.now },
+    time: { type: Date, default: Date.now },
   },
   { timestamps: true }
 )
