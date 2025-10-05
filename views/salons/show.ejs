@@ -1,32 +1,57 @@
-
 <head>
-  <link rel="stylesheet" href="/stylesheets/serviceStyle.css">
+  <link rel="stylesheet" href="/stylesheets/serviceStyle.css" />
   <script src="/scripting/script.js" defer></script>
 </head>
 
-<%- include('../partials/_navbar.ejs') %>
-
-
-<% if(user.role === 'user'){%>
+<%- include('../partials/_navbar.ejs') %> <% if(user.role === 'user'){%>
 <p>Salon Name: <%=salon.name%></p>
 <button>Book Appointment</button>
-<% } %>
+<% } %> <% if(user.role === 'owner'){%>
+<p>Name: <%= salon.name %></p>
+<p>Phone: <%= salon.phone %></p>
+<p>Location: <%= salon.location %></p>
 
+<a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
+<br /><br />
+<form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
+  <button type="submit">Delete</button>
+</form>
+<br />
 
-<% if(user.role === 'owner'){%>
-  <p>Name: <%= salon.name %></p>
-  <p>Phone: <%= salon.phone %></p>
-  <p>Location: <%= salon.location %></p>
+<% services.forEach(service=>{ %>
+<div>
+  <p>Service: <%= service.name %></p>
+  <p>Starting Price: <%= service.price %></p>
+</div>
+<form
+  action="/service/<%= salon._id %>/<%= service._id %>?_method=DELETE"
+  method="post"
+>
+  <button type="submit">Delete</button>
+</form>
 
-  <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
-  <br><br>
-  <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
-    <button type="submit">Delete</button>
-  </form>
-  <br>
+<button id="editService">Edit</button>
 
+<form class="editService editFormService" action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT" method="post">
+  <label for="name">Service Title</label>
+  <input type="text" name="name" value="<%= service.name %>" required />
+  <br />
+
+  <label for="price">Starting Price</label>
+  <input type="number" name="price" min="0" value="<%= service.price %>" required />
+  <br />
+
+  <button type="submit">Edit Service</button>
+</form>
+
+<% }) %>
 <button id="addService">Add Service</button>
-<form class="addService addFormService" action="/service/<%= salon._id %>" method="post">
+
+<form
+  class="addService addFormService"
+  action="/service/<%= salon._id %>"
+  method="post"
+>
   <label for="name">Service Title</label>
   <input type="text" name="name" required />
   <br />
@@ -36,7 +61,6 @@
   <br />
 
   <button type="submit">Add Service</button>
+  <button id="cancelAdd">Cancel</button>
 </form>
 <% } %>
-
-

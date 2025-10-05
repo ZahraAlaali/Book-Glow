@@ -32,8 +32,7 @@ exports.UpdateService = async (req, res) => {
   const salonInDatabase = await Salon.findById(req.params.salonId)
   if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
     await Service.findByIdAndUpdate(req.params.serviceId, req.body)
-    res.send("updated successfully")
-    // res.redirect(`/salon/${req.params.salonId}`)
+    res.redirect(`/salon/${req.params.salonId}`)
   } else res.send("error")
 }
 

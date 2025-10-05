@@ -7,6 +7,6 @@ router.post("/:salonId", serciveCtrl.addService)
 router.get("/:salonId/:serviceId/edit", serciveCtrl.editService)
 router.put("/:salonId/:serviceId", serciveCtrl.UpdateService)
 
-router.delete("/:salonId/:serviceId/", serciveCtrl.deleteService)
+router.delete("/:salonId/:serviceId", serciveCtrl.deleteService)
 
 module.exports = router
