@@ -14,4 +14,7 @@ router.put('/:salonId' , salonCtrl.salon_update_put)
 
 router.delete('/:salonId', salonCtrl.salon_delete)
 
+
+
+
 module.exports = router

@@ -1,6 +1,6 @@
 const Salon = require("../models/Salon.js")
-const User = require("../models/User.js")
-const Appointment = require("../models/Appointments")
+const Service = require("../models/Service")
+const Appointment = require('../models/Appointment')
 
 exports.salon_create_get = async (req, res) => {
   res.render("salons/create.ejs")
@@ -28,8 +28,9 @@ exports.get_index = async (req, res) => {
 
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
+  const services = await Service.find({salonId: req.params.salonId})
   const appointments = await Appointment.find({salonId:req.params.salonId})
-  res.render("salons/show.ejs", { salon , appointments})
+  res.render("salons/show.ejs", { salon , appointments, services})
 }
 
 exports.salon_edit_get = async (req, res) => {
@@ -38,13 +39,13 @@ exports.salon_edit_get = async (req, res) => {
 }
 
 exports.salon_update_put = async (req, res) => {
-  const salon = await Salon.findByIdAndUpdate(req.params.salonId , req.body)
+  const salon = await Salon.findByIdAndUpdate(req.params.salonId, req.body)
   salon.set(req.body)
   await salon.save()
   res.redirect(`/salon/${req.params.salonId}`)
 }
 
-exports.salon_delete = async (req,res)=>{
+exports.salon_delete = async (req, res) => {
   await Salon.findByIdAndDelete(req.params.salonId)
-  res.redirect('/salon')
+  res.redirect("/salon")
 }

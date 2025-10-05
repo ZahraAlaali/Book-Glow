@@ -1,4 +1,4 @@
-const Appointment = require("../models/Appointments")
+const Appointment = require("../models/Appointment")
 const Salon = require("../models/Salon")
 
 exports.appointment_index_get = async (req, res) => {
