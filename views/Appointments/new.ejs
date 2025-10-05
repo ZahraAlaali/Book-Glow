@@ -1,0 +1,12 @@
+<%- include('../partials/_navbar') %>
+
+<h1>Add a new Appointment</h1>
+
+<form action="/appointment/<%= salon._id %>/appointments/new" method="post">
+<label for="dateTime">Date & Time</label>
+<input type="datetime-local" name="dateTime" id="dateTime" />
+<br>
+
+
+<button type="submit">Add a new Appointment</button>
+</form>

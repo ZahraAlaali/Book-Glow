@@ -1,3 +1,9 @@
+
+<head>
+  <link rel="stylesheet" href="/stylesheets/serviceStyle.css">
+  <script src="/scripting/script.js" defer></script>
+</head>
+
 <%- include('../partials/_navbar.ejs') %>
 
 
@@ -12,11 +18,36 @@
   <p>Phone: <%= salon.phone %></p>
   <p>Location: <%= salon.location %></p>
 
+  <select name="appointment" id="">
+    <% appointments.forEach(appointment=> {%>
+      <option value="<%= appointment.dateTime %>"><%= appointment.dateTime %></option>
+   <% }) %>
+
+  </select>
+  <a href="/appointment/<%= salon._id%>/appointments/new"><button>Add Appointments</button></a>
+
+  <br>
+
   <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
   <br><br>
+
   <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
     <button type="submit">Delete</button>
   </form>
   <br>
 
+<button id="addService">Add Service</button>
+<form class="addService addFormService" action="/service/<%= salon._id %>" method="post">
+  <label for="name">Service Title</label>
+  <input type="text" name="name" required />
+  <br />
+
+  <label for="price">Starting Price</label>
+  <input type="number" name="price" min="0" required />
+  <br />
+
+  <button type="submit">Add Service</button>
+</form>
 <% } %>
+
+

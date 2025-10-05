@@ -1,0 +1,16 @@
+<%- include("../partials/_navbar") %>
+
+<h1>Here's all the appointments</h1>
+
+<ul>
+  <% appointments.forEach(appointment => { %>
+<li>
+  <%= appointment.dateTime.toLocaleString() %>
+  <a href="/appointments/<%= appointment._id %>">View</a>
+  <a href="/appointments/<%= appointment._id %>/edit">Edit</a>
+  <form action="/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
+    <button type="submit">Cancel</button>
+  </form>
+</li>
+  <% }) %>
+</ul>

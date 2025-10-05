@@ -29,6 +29,9 @@ app.use(
   })
 )
 
+const path = require("path")
+app.use(express.static(path.join(__dirname, "public")))
+
 const passUser = require("./Middlewares/passUser")
 app.use(passUser)
 
@@ -47,6 +50,10 @@ app.use("/service", serviceRouter)
 // const userRouter = require("./routes/userRouter")
 // app.use("/users", isSignedIn, userRouter)
 
+
+const appointmentRouter = require('./routes/appointments')
+app.use('/appointment', appointmentRouter)
+
 app.get("/", (req, res) => {
   res.render("index.ejs")
 })
@@ -54,3 +61,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Running Server on Port ${PORT} . . . `)
 })
+
