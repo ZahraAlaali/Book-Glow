@@ -1,0 +1,13 @@
+<%- include('../partials/_navbar') %>
+
+<h1>Appointment Details</h1>
+
+<p>Date & Time: <% appointment.dateTime %></p>
+<p>Salon: <% appointment.salon %></p>
+
+
+<a href="/appointments/<%= appontment._id %>/edit">Edit this appointment</a>
+<form action="/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
+  <button type="submit">Cancel this appointment!</button>
+</form>
+
