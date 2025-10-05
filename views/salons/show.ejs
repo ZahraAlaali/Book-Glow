@@ -1,23 +1,25 @@
 <%- include('../partials/_navbar.ejs') %>
 
-
 <% if(user.role === 'user'){%>
 <p>Salon Name: <%=salon.name%></p>
 <button>Book Appointment</button>
 <% } %>
-
 
 <% if(user.role === 'owner'){%>
   <p>Name: <%= salon.name %></p>
   <p>Phone: <%= salon.phone %></p>
   <p>Location: <%= salon.location %></p>
 
-  <select name="appointment" id="">
+  <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
+  <select name="appointment">
     <% appointments.forEach(appointment=> {%>
-      <option value="<%= appointment.dateTime %>"><%= appointment.dateTime %></option>
-   <% }) %>
-
+      <option value="<%= appointment._id %>"><%= appointment.dateTime %>
+      </option>
+  <% }) %>
   </select>
+  <button type="submit">Delete</button>
+  </form>
+
   <a href="/appointment/<%= salon._id%>/appointments/new"><button>Add Appointments</button></a>
 
   <br>

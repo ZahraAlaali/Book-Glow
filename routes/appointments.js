@@ -11,6 +11,6 @@ router.post('/:salonId/appointments/new', appointmentCtrl.appointment_create_pos
 
 router.get("/:appointmentId/edit", appointmentCtrl.appointment_edit_get);
 router.put("/:appointmentId", appointmentCtrl.appointment_update_put);
-router.delete("/:appointmentId", appointmentCtrl.appointment_delete_delete);
+router.delete("/:salonId", appointmentCtrl.appointment_delete_delete);
 
 module.exports = router;
