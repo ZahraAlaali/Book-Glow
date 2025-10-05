@@ -1,6 +1,31 @@
-const Salon = require("../models/Salon")
+const Salon = require("../models/Salon.js")
+const User = require("../models/User.js")
 
-exports.salon_show_get = async (req,res)=>{
-  const salon = await Salon.findById(req.params.salonId)
-  res.render('salons/show.ejs', {salon})
+exports.salon_create_get = async (req, res) => {
+  res.render("salons/create.ejs")
+}
+exports.salon_create_post = async (req, res) => {
+  const salonInDatabase = await Salon.findOne({ name: req.body.name })
+
+  if (salonInDatabase) {
+    return res.send("This Salon Already Exist!")
+  }
+
+  const phoneNum = req.body.phone
+  if (phoneNum.length !== 8) {
+    return res.send("Phone number must be 8 digits")
+  }
+  req.body.ownerId = req.session.user._id
+  const salon = await Salon.create(req.body)
+  res.redirect(`/salon`)
+}
+
+exports.get_index = async (req, res) => {
+  const salons = await Salon.find({ ownerId: req.session.user._id })
+  res.render("salons/index.ejs", { salons })
+}
+
+exports.salon_show_get = async (req, res) => {
+  const salon = await Salon.findOne({ _id: req.params.salonId})
+  res.render("salons/show.ejs", { salon })
 }

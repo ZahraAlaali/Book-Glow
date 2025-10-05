@@ -15,12 +15,25 @@ exports.auth_signUp_post = async (req, res) => {
     return res.send("This Account Already exist!")
   }
 
+  const userName = await User.findOne({
+    username: req.body.username,
+  })
+
+  if (userName) {
+    return res.send("This Username is Already Taken. Please Choose Another.")
+  }
+
   if (req.body.password !== req.body.confirmPassword) {
     return res.send("Password and confirm password must match")
   }
 
   const hashedPassword = bcrypt.hashSync(req.body.password, 10)
   req.body.password = hashedPassword
+
+  const phoneNum = req.body.phone
+  if (phoneNum.length !== 8) {
+    return res.send("Phone number must be 8 digits")
+  }
 
   const user = await User.create(req.body)
   res.render("auth/sign-in.ejs")
@@ -42,7 +55,10 @@ exports.auth_signin_post = async (req, res) => {
     role: userInDatabase.role,
   }
 
-  const salons = await Salon.find()
+let salons = await Salon.find()
+if(req.session.user.role ==="owner"){
+salons = await Salon.find({ownerId: req.session.user._id})
+}
 
   res.render("salons/index.ejs", { salons, user: req.session.user })
 }
