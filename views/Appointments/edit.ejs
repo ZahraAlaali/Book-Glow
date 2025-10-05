@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Appointment </title>
+</head>
+<body>
+<%- include('../partials/_navbar.ejs') %>
+<h1> Edit Appointment</h1>
+
+<form action="/appointments/<%=appointment._id%>?_method=PUT" method="POST">
+<label for="dateTime">Date & Time</label>
+<input type="datetime-local" name="dateTime" id="dateTime" value="<%= appointment.dateTime %>">
+<br>
+
+<label for="salon">Salon</label>
+<input type="text" name="salonId" id="salon"  value="<%= appointment.salonId.name%>">
+<br>
+
+<button type="submit">Edit Appointment</button>
+</form>
+</body>
+</html>

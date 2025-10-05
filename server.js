@@ -50,6 +50,10 @@ app.use("/service", serviceRouter)
 // const userRouter = require("./routes/userRouter")
 // app.use("/users", isSignedIn, userRouter)
 
+
+const appointmentRouter = require('./routes/appointments')
+app.use('/appointments', appointmentRouter)
+
 app.get("/", (req, res) => {
   res.render("index.ejs")
 })
@@ -57,3 +61,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Running Server on Port ${PORT} . . . `)
 })
+

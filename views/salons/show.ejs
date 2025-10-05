@@ -1,15 +1,30 @@
+
 <head>
   <link rel="stylesheet" href="/stylesheets/serviceStyle.css">
   <script src="/scripting/script.js" defer></script>
 </head>
 
+
 <%- include('../partials/_navbar.ejs') %>
+
+
 <% if(user.role === 'user'){%>
 <p>Salon Name: <%=salon.name%></p>
-
+<button>Book Appointment</button>
 <% } %>
 
 
+<% if(user.role === 'owner'){%>
+  <p>Name: <%= salon.name %></p>
+  <p>Phone: <%= salon.phone %></p>
+  <p>Location: <%= salon.location %></p>
+
+  <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
+  <br><br>
+  <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
+    <button type="submit">Delete</button>
+  </form>
+  <br>
 <button id="addService">Add Service</button>
 <form class="addService addFormService" action="/service/<%= salon._id %>" method="post">
   <label for="name">Service Title</label>
@@ -22,3 +37,7 @@
 
   <button type="submit">Add Service</button>
 </form>
+<% } %>
+
+
+
