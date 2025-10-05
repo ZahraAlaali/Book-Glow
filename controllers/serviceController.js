@@ -12,7 +12,7 @@ exports.addService = async (req, res) => {
   if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
     req.body.salonId = req.params.salonId
     const service = await Service.create(req.body)
-    res.send({ service })
+    res.redirect(`/salon/${req.params.salonId}`)
   } else res.send("error")
 }
 

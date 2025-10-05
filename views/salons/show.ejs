@@ -1,3 +1,24 @@
-<%- include('../partials/_navbar.ejs') %> <% if(user.role === 'user'){%>
+<head>
+  <link rel="stylesheet" href="/stylesheets/serviceStyle.css">
+  <script src="/scripting/script.js" defer></script>
+</head>
+
+<%- include('../partials/_navbar.ejs') %>
+<% if(user.role === 'user'){%>
 <p>Salon Name: <%=salon.name%></p>
+
 <% } %>
+
+
+<button id="addService">Add Service</button>
+<form class="addService addFormService" action="/service/<%= salon._id %>" method="post">
+  <label for="name">Service Title</label>
+  <input type="text" name="name" required />
+  <br />
+
+  <label for="price">Starting Price</label>
+  <input type="number" name="price" min="0" required />
+  <br />
+
+  <button type="submit">Add Service</button>
+</form>
