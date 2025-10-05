@@ -1,6 +1,6 @@
 const Salon = require("../models/Salon.js")
 const User = require("../models/User.js")
-const Appointment = require("../models/Appointments")
+const Appointment = require('../models/Appointment.js')
 
 exports.salon_create_get = async (req, res) => {
   res.render("salons/create.ejs")
@@ -38,13 +38,13 @@ exports.salon_edit_get = async (req, res) => {
 }
 
 exports.salon_update_put = async (req, res) => {
-  const salon = await Salon.findByIdAndUpdate(req.params.salonId , req.body)
+  const salon = await Salon.findByIdAndUpdate(req.params.salonId, req.body)
   salon.set(req.body)
   await salon.save()
   res.redirect(`/salon/${req.params.salonId}`)
 }
 
-exports.salon_delete = async (req,res)=>{
+exports.salon_delete = async (req, res) => {
   await Salon.findByIdAndDelete(req.params.salonId)
-  res.redirect('/salon')
+  res.redirect("/salon")
 }
