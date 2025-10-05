@@ -41,3 +41,8 @@ exports.salon_update_put = async (req, res) => {
   await salon.save()
   res.redirect(`/salon/${req.params.salonId}`)
 }
+
+exports.salon_delete = async (req,res)=>{
+  await Salon.findByIdAndDelete(req.params.salonId)
+  res.redirect('/salon')
+}
