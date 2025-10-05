@@ -12,9 +12,11 @@ const appointmentSchema = new mongoose.Schema(
       required: true
     },
     dateTime: {
-      timestamps: true
+    type: Date,
+    required: true
     }
-  }
+  },
+  { timestamps: true }
 )
 
 const Appointment = mongoose.model('Appointment', appointmentSchema)
