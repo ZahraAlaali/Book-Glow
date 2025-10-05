@@ -3,13 +3,13 @@
   <script src="/scripting/script.js" defer></script>
 </head>
 
-<%- include('../partials/_navbar.ejs') %> 
+<%- include('../partials/_navbar.ejs') %>
 
 <% if(user.role === 'user'){%>
 
 <p>Salon Name: <%=salon.name%></p>
 <button>Book Appointment</button>
-<% } %> 
+<% } %>
 
 <% if(user.role === 'owner'){%>
 <p>Name: <%= salon.name %></p>
@@ -95,19 +95,6 @@
 
   <a href="/appointment/<%= salon._id%>/appointments/new"><button>Add Appointments</button></a>
 
-
-<select name="appointment" id="">
-  <% appointments.forEach(appointment=> {%>
-  <option value="<%= appointment.dateTime %>">
-    <%= appointment.dateTime %>
-  </option>
-  <% }) %>
-</select>
-<a href="/appointment/<%= salon._id%>/appointments/new"
-  ><button>Add Appointments</button></a
->
-
-<br />
 
 <% } %>
 <!-- end of owner -->
