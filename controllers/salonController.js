@@ -1,5 +1,6 @@
 const Salon = require("../models/Salon.js")
 const User = require("../models/User.js")
+const Appointment = require("../models/Appointments")
 
 exports.salon_create_get = async (req, res) => {
   res.render("salons/create.ejs")
@@ -27,7 +28,8 @@ exports.get_index = async (req, res) => {
 
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
-  res.render("salons/show.ejs", { salon })
+  const appointments = await Appointment.find({salonId:req.params.salonId})
+  res.render("salons/show.ejs", { salon , appointments})
 }
 
 exports.salon_edit_get = async (req, res) => {

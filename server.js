@@ -49,7 +49,7 @@ app.use("/service", serviceRouter)
 
 
 const appointmentRouter = require('./routes/appointments')
-app.use('/appointments', appointmentRouter)
+app.use('/appointment', appointmentRouter)
 
 app.get("/", (req, res) => {
   res.render("index.ejs")

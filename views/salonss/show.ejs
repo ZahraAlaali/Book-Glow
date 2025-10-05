@@ -12,8 +12,19 @@
   <p>Phone: <%= salon.phone %></p>
   <p>Location: <%= salon.location %></p>
 
+  <select name="appointment" id="">
+    <% appointments.forEach(appointment=> {%>
+      <option value="<%= appointment.dateTime %>"><%= appointment.dateTime %></option>
+   <% }) %>
+
+  </select>
+  <a href="/appointment/<%= salon._id%>/appointments/new"><button>Add Appointments</button></a>
+
+  <br>
+
   <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
   <br><br>
+
   <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
     <button type="submit">Delete</button>
   </form>
