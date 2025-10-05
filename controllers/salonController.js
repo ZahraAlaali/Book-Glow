@@ -26,6 +26,18 @@ exports.get_index = async (req, res) => {
 }
 
 exports.salon_show_get = async (req, res) => {
-  const salon = await Salon.findOne({ _id: req.params.salonId})
+  const salon = await Salon.findOne({ _id: req.params.salonId })
   res.render("salons/show.ejs", { salon })
+}
+
+exports.salon_edit_get = async (req, res) => {
+  const salon = await Salon.findOne({ _id: req.params.salonId })
+  res.render("salons/edit.ejs", { salon })
+}
+
+exports.salon_update_put = async (req, res) => {
+  const salon = await Salon.findByIdAndUpdate({ _id: req.params.salonId} , req.body)
+  salon.set(req.body)
+  await salon.save()
+  res.redirect(`salons/${req.params.salonId}`)
 }
