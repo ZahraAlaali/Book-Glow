@@ -46,6 +46,12 @@
     <br />
     <button type="submit">Edit Rating</button>
   </form>
+  <form
+    action="/rating/<%= salon._id %>/<%= userRating._id %>?_method=DELETE"
+    method="post"
+  >
+    <button type="submit">Delete Rating</button>
+  </form>
   <% }else{ %>
   <form action="/rating/<%= salon._id %>/<%= user._id %>" method="post">
     <label for="rating">Rating</label>

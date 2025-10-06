@@ -13,3 +13,8 @@ exports.updateRating = async (req, res) => {
   await Rating.findByIdAndUpdate(req.params.ratingId, req.body)
   res.redirect(`/salon/${req.params.salonId}`)
 }
+
+exports.deleteRating = async (req,res)=>{
+  await Rating.findByIdAndDelete(req.params.ratingId)
+  res.redirect(`/salon/${req.params.salonId}`)
+}
