@@ -23,7 +23,42 @@
   ><button>Book Appointment</button></a
 >
 
-<% } %>
+<div>
+  <h3>Rate Our Salon</h3>
+  <% if(userRating) {%>
+  <form
+    action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT"
+    method="post"
+  >
+    <label for="rating">Rating</label>
+    <input
+      type="number"
+      min="0"
+      max="5"
+      name="rating"
+      required
+      value="<%= userRating.rating %>"
+    />
+    <br />
+
+    <label for="comment">Comment</label>
+    <textarea name="comment" id=""><%= userRating.comment %></textarea>
+    <br />
+    <button type="submit">Edit Rating</button>
+  </form>
+  <% }else{ %>
+  <form action="/rating/<%= salon._id %>/<%= user._id %>" method="post">
+    <label for="rating">Rating</label>
+    <input type="number" min="0" max="5" name="rating" required />
+    <br />
+
+    <label for="comment">Comment</label>
+    <textarea name="comment" id=""></textarea>
+    <br />
+    <button type="submit">Create Rating</button>
+  </form>
+</div>
+<% } %> <% } %>
 <!-- end of user -->
 <% if(user.role === 'owner'){%>
 <p>Name: <%= salon.name %></p>
