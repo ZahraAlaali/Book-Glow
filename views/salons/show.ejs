@@ -3,14 +3,30 @@
   <script src="/scripting/script.js" defer></script>
 </head>
 
-<%- include('../partials/_navbar.ejs') %>
+<%- include('../partials/_navbar.ejs') %> <% if(user.role === 'user'){%>
 
-<% if(user.role === 'user'){%>
+<h2><%=salon.name%></h2>
+<p>Location: <%= salon.location %></p>
+<p>
+  Contact Us: <br />
+  Phone Number:<%= salon.phone %>
+</p>
 
-<p>Salon Name: <%=salon.name%></p>
-<button>Book Appointment</button>
+<% services.forEach(service=>{ %>
+<div>
+  <p>Service: <%= service.name %></p>
+  <p>Starting Price: <%= service.price %></p>
+</div>
+<% }) %>
+
+<a href="/appointment/<%= salon._id %>/show/book"
+  ><button>Book Appointment</button></a
+>
+
+
+
 <% } %>
-
+<!-- end of user -->
 <% if(user.role === 'owner'){%>
 <p>Name: <%= salon.name %></p>
 <p>Phone: <%= salon.phone %></p>
@@ -43,6 +59,7 @@
   action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT"
   method="post"
 >
+<h3>Edit Service</h3>
   <label for="name">Service Title</label>
   <input type="text" name="name" value="<%= service.name %>" required />
   <br />
@@ -58,11 +75,12 @@
   <br />
 
   <button type="submit">Edit Service</button>
+  <button class="cancelEdit">Cancel</button>
 </form>
 
 <% }) %>
 <!-- end of service forEach -->
-
+<br>
 <button id="addService">Add Service</button>
 
 <form
@@ -70,6 +88,7 @@
   action="/service/<%= salon._id %>"
   method="post"
 >
+  <h3>Add Service</h3>
   <label for="name">Service Title</label>
   <input type="text" name="name" required />
   <br />
@@ -82,19 +101,20 @@
   <button id="cancelAdd">Cancel</button>
 </form>
 
-
-  <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
+<form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
   <select name="appointment">
     <% appointments.forEach(appointment=> {%>
-      <option value="<%= appointment._id %>"><%= appointment.dateTime %>
-      </option>
-  <% }) %>
+    <option value="<%= appointment._id %>"><%= appointment.dateTime %></option>
+    <% }) %>
   </select>
   <button type="submit">Delete</button>
-  </form>
+</form>
 
-  <a href="/appointment/<%= salon._id%>/appointments/new"><button>Add Appointments</button></a>
-
+<a href="/appointment/<%= salon._id%>/appointments/new"
+  ><button>Add Appointments</button></a
+>
 
 <% } %>
 <!-- end of owner -->
+
+
