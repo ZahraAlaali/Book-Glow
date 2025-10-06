@@ -1,7 +1,6 @@
-.addService{
-  visibility: hidden;
+.addService {
+  display: none;
 }
-.editService{
-  visibility: hidden;
+.editService {
+  display: none;
 }
-

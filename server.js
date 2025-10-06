@@ -46,6 +46,10 @@ app.use("/salon", salonRouter)
 const serviceRouter = require("./routes/serviceRouter")
 app.use("/service", serviceRouter)
 
+// Rating Router
+const ratingRouter = require("./routes/ratingsRouter")
+app.use("/rating", ratingRouter)
+
 // // User Router
 // const userRouter = require("./routes/userRouter")
 // app.use("/users", isSignedIn, userRouter)
