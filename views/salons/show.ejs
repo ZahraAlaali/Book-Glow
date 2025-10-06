@@ -24,7 +24,6 @@
 >
 
 
-
 <% } %>
 <!-- end of user -->
 <% if(user.role === 'owner'){%>
@@ -59,7 +58,7 @@
   action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT"
   method="post"
 >
-<h3>Edit Service</h3>
+  <h3>Edit Service</h3>
   <label for="name">Service Title</label>
   <input type="text" name="name" value="<%= service.name %>" required />
   <br />
@@ -80,7 +79,7 @@
 
 <% }) %>
 <!-- end of service forEach -->
-<br>
+<br />
 <button id="addService">Add Service</button>
 
 <form
@@ -117,4 +116,11 @@
 <% } %>
 <!-- end of owner -->
 
-
+<aside>
+  <h3>Comments Section</h3>
+  <% ratings.forEach(rating=>{ %>
+  <p><%= rating.username %></p>
+  <p>Rating: <%= rating.rating %></p>
+  <p>Comment: <%= rating.comment %></p>
+  <% }) %>
+</aside>
