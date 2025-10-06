@@ -23,7 +23,6 @@
   ><button>Book Appointment</button></a
 >
 
-
 <% } %>
 <!-- end of user -->
 <% if(user.role === 'owner'){%>
@@ -119,7 +118,7 @@
 <aside>
   <h3>Comments Section</h3>
   <% ratings.forEach(rating=>{ %>
-  <p><%= rating.username %></p>
+  <p>Username: <%= rating.userId.username %></p>
   <p>Rating: <%= rating.rating %></p>
   <p>Comment: <%= rating.comment %></p>
   <% }) %>
