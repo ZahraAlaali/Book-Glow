@@ -10,7 +10,7 @@ const PORT = process.env.PORT ? process.env.PORT : "3000"
 
 // Require/Use Middlewares
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 const methodOverride = require("method-override")
 app.use(methodOverride("_method"))

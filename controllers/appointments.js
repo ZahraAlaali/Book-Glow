@@ -1,11 +1,36 @@
 const Appointment = require("../models/Appointment")
 const Salon = require("../models/Salon")
+const Service = require("../models/Service")
 
 exports.appointment_index_get = async (req, res) => {
   const appointments = await Appointment.find({ user: req.session.user._id })
     .populate("userId")
     .populate("salonId")
-    res.render("appointments/index.ejs", { appointments })
+  res.render("appointments/index.ejs", { appointments })
+}
+
+exports.book_index_get = async (req, res) => {
+  const salonId = req.params.salonId
+  const appointments = await Appointment.find({
+    salonId: req.params.salonId,
+    userId: null,
+  }).populate("salonId")
+  const services = await Service.find({ salonId: req.params.salonId })
+  res.render("salons/book.ejs", {
+    appointments,
+    services,
+    salonId: req.params.salonId,
+  })
+}
+
+exports.appointment_book_post = async (req, res) => {
+  const bookingData = {
+    userId: req.session.user._id,
+    services: req.body.services
+  }
+  await Appointment.findByIdAndUpdate(req.body.appointment_id, bookingData)
+
+  res.redirect("/appointment")
 }
 
 exports.appointment_create_get = async (req, res) => {
@@ -50,6 +75,15 @@ exports.appointment_delete_delete = async (req, res) => {
   const appointment = await Appointment.findByIdAndDelete(req.body.appointment)
   if (appointment) {
     res.redirect(`/salon/${req.params.salonId}`)
+  } else {
+    res.send("You don't have permission to edit this appointment")
+  }
+}
+
+exports.appointment_delete_delete = async (req, res) => {
+  const appointment = await Appointment.findByIdAndDelete(req.body.appointment)
+  if (appointment) {
+    res.redirect("/appointment")
   } else {
     res.send("You don't have permission to edit this appointment")
   }

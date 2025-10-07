@@ -8,7 +8,9 @@
 <% if(user.role === 'user'){%>
 
 <p>Salon Name: <%=salon.name%></p>
-<button>Book Appointment</button>
+
+<a href="/appointment/<%= salon._id %>/show/book"><button>Book Appointment</button></a>
+
 <% } %>
 
 <% if(user.role === 'owner'){%>
