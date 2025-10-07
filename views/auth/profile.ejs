@@ -3,10 +3,11 @@
 <h2>Profile</h2>
 
 <form action="/auth/<%= user._id %>/profile" method="post" enctype="multipart/form-data">
-  
+
   <input type="file" name="profileImg" />
   <button type="submit">upload</button>
 </form>
+
 
 <form action="/auth/<%= user._id %>/profile?_method=PUT" method="post">
   <label for="profileImg">profile Image</label>

@@ -9,8 +9,8 @@
   </head>
   <body>
     <%- include("../partials/_navbar.ejs") %>
-
-    <h1><%= user.role %></h1>
+    
+    <h4>Hello <%= user.username %>! Start exploring! Find your perfect salon and book your appointment today.</h4>
 
     <% if(user.role === 'owner'){ %>
       <h2>My Salons:</h2>
