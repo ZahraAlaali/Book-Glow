@@ -3,7 +3,10 @@
   <script src="/scripting/script.js" defer></script>
 </head>
 
-<%- include('../partials/_navbar.ejs') %> <% if(user.role === 'user'){%>
+<%- include('../partials/_navbar.ejs') %>
+
+<!-- start of user -->
+<% if(user.role === 'user'){%>
 
 <h2><%=salon.name%></h2>
 <p>Location: <%= salon.location %></p>
@@ -12,21 +15,16 @@
   Phone Number:<%= salon.phone %>
 </p>
 
-<p>Salon Name: <%=salon.name%></p>
+<a href="/appointment/<%= salon._id %>/show/book"
+  ><button>Book Appointment</button></a
+>
 
-<a href="/appointment/<%= salon._id %>/show/book"><button>Book Appointment</button></a>
-
-<% } %>
 <% services.forEach(service=>{ %>
 <div>
   <p>Service: <%= service.name %></p>
   <p>Starting Price: <%= service.price %></p>
 </div>
 <% }) %>
-
-<a href="/appointment/<%= salon._id %>/show/book"
-  ><button>Book Appointment</button></a
->
 
 <div>
   <h3>Rate Our Salon</h3>
@@ -69,7 +67,9 @@
     <button type="submit">Create Rating</button>
   </form>
 </div>
-<% } %> <% } %>
+<% } %>
+<!-- end of rating -->
+<% } %>
 <!-- end of user -->
 <% if(user.role === 'owner'){%>
 <p>Name: <%= salon.name %></p>
@@ -145,29 +145,31 @@
   <button id="cancelAdd">Cancel</button>
 </form>
 
+<form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
+  <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
+    <select name="appointment">
+      <% appointments.forEach(appointment=> {%>
+      <option value="<%= appointment._id %>">
+        <%= appointment.dateTime %>
+      </option>
+      <% }) %>
+    </select>
+    <button type="submit">Delete</button>
+  </form>
 
-  <form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
-<form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
-  <select name="appointment">
-    <% appointments.forEach(appointment=> {%>
-    <option value="<%= appointment._id %>"><%= appointment.dateTime %></option>
+  <a href="/appointment/<%= salon._id%>/appointments/new"
+    ><button>Add Appointments</button></a
+  >
+
+  <% } %>
+  <!-- end of owner -->
+
+  <aside>
+    <h3>Comments Section</h3>
+    <% ratings.forEach(rating=>{ %>
+    <p>Username: <%= rating.userId.username %></p>
+    <p>Rating: <%= rating.rating %></p>
+    <p>Comment: <%= rating.comment %></p>
     <% }) %>
-  </select>
-  <button type="submit">Delete</button>
+  </aside>
 </form>
-
-<a href="/appointment/<%= salon._id%>/appointments/new"
-  ><button>Add Appointments</button></a
->
-
-<% } %>
-<!-- end of owner -->
-
-<aside>
-  <h3>Comments Section</h3>
-  <% ratings.forEach(rating=>{ %>
-  <p>Username: <%= rating.userId.username %></p>
-  <p>Rating: <%= rating.rating %></p>
-  <p>Comment: <%= rating.comment %></p>
-  <% }) %>
-</aside>
