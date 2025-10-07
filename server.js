@@ -5,6 +5,9 @@ require("dotenv").config()
 // Database Configuration
 require("./config/db")
 
+const upload = require('./Middlewares/upload')
+const user = require('./models/User')
+
 //Port Configuration
 const PORT = process.env.PORT ? process.env.PORT : "3000"
 
