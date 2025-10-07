@@ -43,7 +43,6 @@ exports.salon_show_get = async (req, res) => {
     salonId: req.params.salonId,
     userId: req.session.user._id,
   })
-  console.log(userRating)
   res.render("salons/show.ejs", {
     salon,
     appointments,

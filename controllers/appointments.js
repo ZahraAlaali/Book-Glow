@@ -50,7 +50,6 @@ exports.appointment_show_get = async (req, res) => {
     .populate("userId")
     .populate("salonId")
     .populate("services")
-    console.log(userAppointment)
   const salonAppointments = await Appointment.find({ salonId: req.params.salonId })
   res.render("appointments/show.ejs", { userAppointment , salonAppointments })
 }
