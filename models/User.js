@@ -19,7 +19,13 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     profileImg: {
-      type: String,
+      name:{
+        type: String,
+      },
+      image:{
+        data: Buffer,
+        contentType: String
+      }
     },
     role: {
       type: String,

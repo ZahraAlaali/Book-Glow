@@ -5,6 +5,10 @@ require("dotenv").config()
 // Database Configuration
 require("./config/db")
 
+const upload = require('./Middlewares/upload')
+
+const user = require('./models/User')
+
 //Port Configuration
 const PORT = process.env.PORT ? process.env.PORT : "3000"
 
@@ -31,6 +35,8 @@ app.use(
 
 const path = require("path")
 app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static('public'))
+
 
 const passUser = require("./Middlewares/passUser")
 app.use(passUser)
@@ -45,6 +51,10 @@ app.use("/salon", salonRouter)
 
 const serviceRouter = require("./routes/serviceRouter")
 app.use("/service", serviceRouter)
+
+// Rating Router
+const ratingRouter = require("./routes/ratingsRouter")
+app.use("/rating", ratingRouter)
 
 // // User Router
 // const userRouter = require("./routes/userRouter")
