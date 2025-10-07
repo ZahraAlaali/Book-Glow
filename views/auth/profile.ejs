@@ -2,19 +2,17 @@
 
 <h2>Profile</h2>
 
-<form action="/auth/<%= user._id %>/profile" method="post" enctype="multipart/form-data" >
+<form action="/auth/<%= user._id %>/profile" method="post" enctype="multipart/form-data">
 
   <input type="file" name="profileImg" />
   <button type="submit">upload</button>
 </form>
 
 
-
 <form action="/auth/<%= user._id %>/profile?_method=PUT" method="post">
   <label for="profileImg">profile Image</label>
-  <img src="<%= user.profileImg %>" alt="">
-
-  <br>
+  <img src="<%= user.profileImg %>" alt="" />
+  <br />
   <label for="username">Username</label>
   <input type="text" name="username" value="<%= user.username %>" />
 

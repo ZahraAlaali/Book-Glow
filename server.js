@@ -6,6 +6,7 @@ require("dotenv").config()
 require("./config/db")
 
 const upload = require('./Middlewares/upload')
+
 const user = require('./models/User')
 
 //Port Configuration
@@ -34,6 +35,8 @@ app.use(
 
 const path = require("path")
 app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static('public'))
+
 
 const passUser = require("./Middlewares/passUser")
 app.use(passUser)

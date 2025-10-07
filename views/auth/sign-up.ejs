@@ -1,37 +1,43 @@
+<link rel="stylesheet" href="../../stylesheets/sign.css" />
+
 <%- include("../partials/_navbar.ejs") %>
-<h1>Create a New Account</h1>
 
-<form action="/auth/sign-up" method="post">
-  <label for="username">Username</label>
-  <input type="text" name="username" />
+<div>
+  <h1>Create a New Account</h1>
 
-  <br />
+  <form action="/auth/sign-up" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" />
 
-  <label for="email">Email</label>
-  <input type="email" name="email" />
+    <br />
 
-  <br />
+    <label for="email">Email</label>
+    <input type="email" name="email" />
 
-  <label for="role">Your Role</label>
-  <select name="role">
-    <option value="user">Customer</option>
-    <option value="owner">Business Owner</option>
-  </select>
+    <br />
 
-  <label for="phone">Phone Number</label>
-  <input type="number" name="phone" />
+    <label for="role">Your Role</label>
+    <div class="selection">
+      <select name="role">
+        <option value="user">Customer</option>
+        <option value="owner">Business Owner</option>
+      </select>
+    </div>
+    <label for="phone">Phone Number</label>
+    <input type="number" name="phone" />
 
-  <br />
+    <br />
 
-  <label for="password">Password</label>
-  <input type="password" name="password" />
+    <label for="password">Password</label>
+    <input type="password" name="password" />
 
-  <br />
+    <br />
 
-  <label for="ConfirmPassword">Confirm Password</label>
-  <input type="Password" name="confirmPassword" />
+    <label for="ConfirmPassword">Confirm Password</label>
+    <input type="Password" name="confirmPassword" />
 
-  <br />
+    <br />
 
-  <button type="submit">Sign Up</button>
-</form>
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
