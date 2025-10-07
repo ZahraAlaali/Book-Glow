@@ -6,6 +6,7 @@ require("dotenv").config()
 require("./config/db")
 
 const upload = require('./Middlewares/upload')
+
 const user = require('./models/User')
 
 //Port Configuration
