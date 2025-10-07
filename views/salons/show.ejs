@@ -12,6 +12,11 @@
   Phone Number:<%= salon.phone %>
 </p>
 
+<p>Salon Name: <%=salon.name%></p>
+
+<a href="/appointment/<%= salon._id %>/show/book"><button>Book Appointment</button></a>
+
+<% } %>
 <% services.forEach(service=>{ %>
 <div>
   <p>Service: <%= service.name %></p>
@@ -140,6 +145,8 @@
   <button id="cancelAdd">Cancel</button>
 </form>
 
+
+  <form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
 <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
   <select name="appointment">
     <% appointments.forEach(appointment=> {%>
