@@ -1,0 +1,25 @@
+<%- include('../partials/_navbar.ejs') %>
+<h1>Book Appointment</h1>
+
+<form action="/appointment/<%= salonId %>/show/book" method="POST">
+  <h2>Choose Services:</h2>
+  <select name="services" multiple>
+  <% services.forEach(service => { %>
+    <option value="<%= service._id %>"><%= service.name %> - $<%= service.price %></option>
+  <%})%>
+</select>
+
+  <h2>Choose Appointment:</h2>
+  <% appointments.forEach(appointment => { if(!appointment.userId){ %>
+
+  <input
+    type="radio"
+    name="appointment_id"
+    value="<%= appointment._id %>"
+    required
+  />
+  <%= appointment.dateTime.toLocaleString() %><br />
+  <% }}) %>
+
+  <button type="submit">Book Appointment</button>
+</form>

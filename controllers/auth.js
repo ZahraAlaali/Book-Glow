@@ -53,12 +53,15 @@ exports.auth_signin_post = async (req, res) => {
     username: userInDatabase.username,
     _id: userInDatabase._id,
     role: userInDatabase.role,
+    email: userInDatabase.email,
+    phone: userInDatabase.phone,
+    profileImg: userInDatabase.profileImg,
   }
 
-let salons = await Salon.find()
-if(req.session.user.role ==="owner"){
-salons = await Salon.find({ownerId: req.session.user._id})
-}
+  let salons = await Salon.find()
+  if (req.session.user.role === "owner") {
+    salons = await Salon.find({ ownerId: req.session.user._id })
+  }
 
   res.render("salons/index.ejs", { salons, user: req.session.user })
 }
@@ -84,4 +87,19 @@ exports.UpdatePassword = async (req, res) => {
   await user.save()
 
   res.send("password updated")
+}
+
+exports.auth_profile_get = async (req, res) => {
+  res.render("auth/profile.ejs")
+}
+
+exports.auth_profile_post = async (req, res) => {
+  if (req.file) {
+    req.body.profileImg = `/uploads/${req.file.filename}`
+  }
+
+  await User.findByIdAndUpdate(req.params.userId, req.body)
+
+  req.session.user.profileImg = req.body.profileImg;
+  res.redirect(`/auth/${req.params.userId}/profile`)
 }
