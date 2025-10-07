@@ -65,6 +65,9 @@ exports.salon_update_put = async (req, res) => {
 }
 
 exports.salon_delete = async (req, res) => {
+  await Rating.deleteMany({salonId: req.params.salonId})
+  await Service.deleteMany({ salonId: req.params.salonId })
+  await Appointment.deleteMany({ salonId: req.params.salonId })
   await Salon.findByIdAndDelete(req.params.salonId)
   res.redirect("/salon")
 }
