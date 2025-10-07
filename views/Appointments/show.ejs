@@ -4,10 +4,13 @@
 
 <p>Date & Time: <%= userAppointment.dateTime %></p>
 <p>Salon: <%= userAppointment.salonId.name %></p>
-
-<a href="/appointment/<%= userAppointment._id %>/edit"
-  >Edit this appointment</a
->
+<p>Services:</p>
+<ul>
+  <% userAppointment.services.forEach(service=>{ %>
+  <li><%= service.name %></li>
+  <% }) %>
+</ul>
+<a href="/appointment/<%= userAppointment._id %>/edit">Edit this appointment</a>
 <form
   action="/appointment/<%= userAppointment._id %>?_method=DELETE"
   method="POST"
