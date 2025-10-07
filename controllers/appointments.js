@@ -3,9 +3,10 @@ const Salon = require("../models/Salon")
 const Service = require("../models/Service")
 
 exports.appointment_index_get = async (req, res) => {
-  const appointments = await Appointment.find({ user: req.session.user._id })
+  const appointments = await Appointment.find({ userId: req.session.user._id })
     .populate("userId")
     .populate("salonId")
+    .populate("services")
   res.render("appointments/index.ejs", { appointments })
 }
 
@@ -45,11 +46,12 @@ exports.appointment_create_post = async (req, res) => {
 }
 
 exports.appointment_show_get = async (req, res) => {
-  const appointment = await Appointment.findById(req.params.appointmentId)
+  const userAppointment = await Appointment.findById(req.params.appointmentId)
     .populate("userId")
     .populate("salonId")
-  const appointments = await Appointment.find({ salonId: req.params.salonId })
-  res.render("appointments/show.ejs", { appointments })
+    console.log(userAppointment)
+  const salonAppointments = await Appointment.find({ salonId: req.params.salonId })
+  res.render("appointments/show.ejs", { userAppointment , salonAppointments })
 }
 
 exports.appointment_edit_get = async (req, res) => {
@@ -71,7 +73,7 @@ exports.appointment_update_put = async (req, res) => {
   }
 }
 
-exports.appointment_delete_delete = async (req, res) => {
+exports.appointment_owner_delete = async (req, res) => {
   const appointment = await Appointment.findByIdAndDelete(req.body.appointment)
   if (appointment) {
     res.redirect(`/salon/${req.params.salonId}`)
@@ -81,8 +83,12 @@ exports.appointment_delete_delete = async (req, res) => {
 }
 
 exports.appointment_delete_delete = async (req, res) => {
-  const appointment = await Appointment.findByIdAndDelete(req.body.appointment)
+
+  const appointment = await Appointment.findById(req.params.appointmentId)
   if (appointment) {
+    await Appointment.updateOne({_id:appointment._id},{
+      $unset: {services:"", userId:""}
+    })
     res.redirect("/appointment")
   } else {
     res.send("You don't have permission to edit this appointment")

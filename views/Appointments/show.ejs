@@ -2,12 +2,15 @@
 
 <h1>Appointment Details</h1>
 
-<p>Date & Time: <% appointment.dateTime %></p>
-<p>Salon: <% appointment.salon %></p>
+<p>Date & Time: <%= userAppointment.dateTime %></p>
+<p>Salon: <%= userAppointment.salonId.name %></p>
 
-
-<a href="/appointments/<%= appontment._id %>/edit">Edit this appointment</a>
-<form action="/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
+<a href="/appointment/<%= userAppointment._id %>/edit"
+  >Edit this appointment</a
+>
+<form
+  action="/appointment/<%= userAppointment._id %>?_method=DELETE"
+  method="POST"
+>
   <button type="submit">Cancel this appointment!</button>
 </form>
-

@@ -6,7 +6,7 @@
   <% appointments.forEach(appointment => { %>
 <li>
   <%= appointment.dateTime.toLocaleString() %>
-  <a href="/appointment/<%= appointment._id %>">View</a>
+  <a href="/appointment/<%= appointment._id %>/showAppointment">View</a>
   <a href="/appointment/<%= appointment._id %>/edit">Edit</a>
   <form action="/appointment/<%= appointment._id %>?_method=DELETE" method="POST">
     <button type="submit">Cancel</button>
