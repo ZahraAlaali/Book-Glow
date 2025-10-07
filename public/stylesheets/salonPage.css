@@ -8,22 +8,16 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-
 nav {
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 30px;
   padding: 10px;
 }
-
 nav a {
   text-decoration: none;
   color: black;
@@ -35,4 +29,36 @@ nav a:hover {
   transform: scale(1.2);
   color: #ff4081;
   cursor: pointer;
+}
+header {
+  width: 100%;
+  min-height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(https://i.pinimg.com/1200x/18/d5/2c/18d52cb0c7382949d58c3a3251e2f7f0.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  align-items: center;
+  color: aliceblue;
+}
+
+main{
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.salon{
+  width: 100%;
+  height: 30px;
+}
+
+.salon img{
+  border: 100%;
+
 }
