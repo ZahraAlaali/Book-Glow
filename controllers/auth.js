@@ -48,6 +48,13 @@ exports.auth_signin_post = async (req, res) => {
   if (!userInDatabase) {
     return res.send("Login failed. Please try again later...")
   }
+  const validPassword = bcrypt.compareSync(
+    req.body.password,
+    userInDatabase.password
+  )
+  if (!validPassword) {
+    return res.send("Login failed. Please try again later...")
+  }
 
   req.session.user = {
     username: userInDatabase.username,
@@ -56,11 +63,6 @@ exports.auth_signin_post = async (req, res) => {
     email: userInDatabase.email,
     phone: userInDatabase.phone,
     profileImg: userInDatabase.profileImg,
-  }
-
-  let salons = await Salon.find()
-  if (req.session.user.role === "owner") {
-    salons = await Salon.find({ ownerId: req.session.user._id })
   }
 
   res.redirect("/salon")
@@ -100,6 +102,37 @@ exports.auth_profile_post = async (req, res) => {
 
   await User.findByIdAndUpdate(req.params.userId, req.body)
 
-  req.session.user.profileImg = req.body.profileImg;
+  req.session.user.profileImg = req.body.profileImg
+  res.redirect(`/auth/${req.params.userId}/profile`)
+}
+
+exports.auth_profile_put = async (req, res) => {
+  const userInDatabase = await User.findOne({
+    email: req.body.email,
+  })
+
+  if (userInDatabase && !userInDatabase._id.equals(req.params.userId)) {
+    return res.send("This Account Already exist!")
+  }
+
+  const userName = await User.findOne({
+    username: req.body.username,
+  })
+
+  if (userName && !userName._id.equals(req.params.userId)) {
+    return res.send("This Username is Already Taken. Please Choose Another.")
+  }
+  const phoneNum = req.body.phone
+  if (phoneNum.length !== 8) {
+    return res.send("Phone number must be 8 digits")
+  }
+
+  await User.findByIdAndUpdate(req.params.userId, req.body)
+  const user = await User.findById(req.params.userId)
+  req.session.user.username = user.username
+  req.session.user._id = user._id
+  req.session.user.role = user.role
+  req.session.user.email = user.email
+  req.session.user.phone = user.phone
   res.redirect(`/auth/${req.params.userId}/profile`)
 }
