@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../../stylesheets/salonPage.css" />
-    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <%- include("../partials/_navbar.ejs") %>
 
-    <div class = search>
+    <div class="search">
       <form action="/salon/search" method="post">
         <input type="search" name="search" />
         <button type="submit">🔍</button>
@@ -36,17 +42,13 @@
       <br />
       <a href="/salon/create"><button>Add Salon</button></a>
 
-      <% } %>
-      <% if(user.role == 'user'){ %>
-      <% salons.forEach(salon=>{%>
+      <% } %> <% if(user.role == 'user'){ %> <% salons.forEach(salon=>{%>
       <div class="salon">
         <img src="<%= salon.salonImg %>" alt="salonImg" />
         <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
       </div>
       <br />
-      <%}) %>
-      <% } %>
+      <%}) %> <% } %>
     </main>
-
   </body>
 </html>
