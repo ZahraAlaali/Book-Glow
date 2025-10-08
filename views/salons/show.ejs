@@ -42,13 +42,13 @@
       />
     <label for="star5" title="text">5 stars</label>
     <input type="radio" id="star4" name="rating" value="4" required
-     <% if(userRating.rating === 4) {%>
+    <% if(userRating.rating === 4) {%>
       checked
       <% } %>
       />
     <label for="star4" title="text">4 stars</label>
     <input type="radio" id="star3" name="rating" value="3" required
-     <% if(userRating.rating === 3) {%>
+    <% if(userRating.rating === 3) {%>
       checked
       <% } %>
     />
@@ -197,24 +197,10 @@
   <a href="/appointment/<%= salon._id%>/appointments/new"
     ><button>Add Appointments</button></a
   >
+  <a href="/appointment/<%= salon._id %>/owner/appointments">
+    <button>View Booked Appointment</button>
+  </a>
 
-  <h3>Booked Appointments</h3>
-  <ul>
-    <% appointments.forEach(appointment => { %>
-    <% if (appointment.userId) {%>
-    <li>
-      <strong>Date:</strong> <%= appointment.dateTime.toLocaleString() %><br>
-      <strong>Booked by:</strong> <%= appointment.userId.username %><br>
-      <strong>Services:</strong>
-      <ul>
-        <% appointment.services.forEach(service => { %>
-        <li><%= service.name %> - $<%= service.price %></li>
-        <% }) %>
-      </ul>
-    </li>
-    <% } %>
-  <% }) %>
-  </ul>
   <% } %>
 
   <!-- end of owner -->

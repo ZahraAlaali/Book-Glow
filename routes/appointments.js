@@ -3,6 +3,7 @@ const appointmentCtrl = require("../controllers/appointments")
 
 // Routes
 router.get("/", appointmentCtrl.appointment_index_get)
+router.get("/:salonId/owner/appointments", appointmentCtrl.ownerAppointments_get)
 router.get("/new", appointmentCtrl.appointment_create_get)
 // slash only cause it post
 router.get("/:salonId/appointments/new", appointmentCtrl.appointment_create_get)

@@ -74,6 +74,13 @@ exports.appointment_update_put = async (req, res) => {
   }
 }
 
+exports.ownerAppointments_get = async (req, res) =>{
+  const salonId = req.params.salonId
+  const appointments = await Appointment.find({ salonId: salonId }). populate("userId").populate("services")
+
+  res.render("appointments/owner.ejs", { appointments })
+}
+
 exports.appointment_owner_delete = async (req, res) => {
   const appointment = await Appointment.findByIdAndDelete(req.body.appointment)
   if (appointment) {
