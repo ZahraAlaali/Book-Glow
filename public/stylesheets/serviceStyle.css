@@ -1,47 +1,152 @@
-.addService {
-  display: none;
-}
+/* ===============================
+   General Service Styles
+================================== */
+
+.addService,
 .editService {
   display: none;
 }
 
-.serviceForm button,#addService{
+/* Container for all services */
+.serviceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+  width: 90%;
+  max-width: 1000px;
+}
+
+/* ====== Each Service Card ====== */
+.serviceList {
+  background-color: #ffe6f1;
+  border-radius: 20px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.serviceList:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.serviceList p {
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+/* Buttons inside service cards */
+.serviceList form,
+.serviceList button {
+  margin-top: 10px;
+}
+
+.serviceList button {
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: none;
+  background-color: #ff82ac;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.serviceList button:hover {
+  background-color: #ff4081;
+  transform: scale(1.05);
+}
+
+/* Buttons grouped together */
+.serviceList .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* ====== Add / Edit Service Forms ====== */
+.serviceForm {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.serviceForm .title {
+  padding-bottom: 10px;
+  font-size: 22px;
+  color: #333;
+  text-align: center;
+}
+
+.serviceForm label {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+.serviceForm input,
+.serviceForm textarea,
+.serviceForm select {
+  width: 100%;
+  max-width: 350px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Add / Cancel Buttons */
+.serviceForm button,
+#addService {
   width: 150px;
   height: 40px;
   border-radius: 15px;
   font-size: 15px;
-  transition: transform 0.2s ease, color 0.2s ease;
+  background-color: #ff82ac;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#addService:hover {
-  transform: scale(1.08);
-  background-color: #ff4081;
-}
-
+#addService:hover,
 .serviceForm button:hover {
   transform: scale(1.08);
   background-color: #ff4081;
 }
 
-.serviceForm{
-  flex: 1;
+/* Group Add / Cancel buttons */
+.buttons {
+  margin-top: 15px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.serviceForm .title {
-  padding: 20px;
-  text-align: center;
+  gap: 10px;
 }
 
-.serviceForm input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 10px;
-}
-
-.serviceForm label {
-  font-size: 20px;
+/* ====== Animation for smooth appearance ====== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
