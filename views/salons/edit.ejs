@@ -1,4 +1,8 @@
+<link rel="stylesheet" href="/stylesheets/sign.css" />
+
 <%- include('../partials/_navbar.ejs') %>
+
+<div>
 <h1>Edit Your Salon</h1>
 
 <form action="/salon/<%= salon._id%>?_method=PUT" method="post">
@@ -19,3 +23,4 @@
 
   <button type="submit">Edit Your Salon</button>
 </form>
+</div>

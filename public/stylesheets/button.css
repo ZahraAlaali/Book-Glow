@@ -1,0 +1,12 @@
+button {
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 15px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+  background-color: #ff4081;
+}
