@@ -30,7 +30,7 @@ exports.get_index = async (req, res) => {
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
   const services = await Service.find({salonId: req.params.salonId})
-  const appointments = await Appointment.find({salonId:req.params.salonId})
+  const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
   const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
   const userRating = await Rating.findOne({salonId: req.params.salonId, userId: req.session.user._id})
   console.log(userRating)
