@@ -14,8 +14,25 @@
     <label for="email">Email</label>
     <input type="email" name="email" id="email" required />
 
+    <label for="phone">Phone Number</label>
+    <input type="number" name="phone" id="phone" min="0" required />
+    <br />
+    <label for="role">Role</label>
+    <select name="role" id="role">
+      <option value="owner">Owner</option>
+      <option value="user">Customer</option>
+    </select>
+    <br />
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required />
+    <br />
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      name="confirmPassword"
+      id="confirmPassword"
+      required
+    />
 
     <button type="submit">Sign Up</button>
   </form>

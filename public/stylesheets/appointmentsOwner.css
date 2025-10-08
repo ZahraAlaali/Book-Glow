@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Page Title */
+h1 {
+  text-align: center;
+  color: #d63384;
+  margin-top: 100px;
+  font-size: 2.2rem;
+  text-shadow: 1px 1px 5px rgba(214, 51, 132, 0.2);
+}
+
+/* Appointment List */
+ul {
+  list-style: none;
+  padding: 0;
+  width: 80%;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+/* Appointment Card */
+ul > li {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Appointment details */
+ul > li strong {
+  color: #ff1493;
+}
+
+ul > li ul {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+ul > li ul li {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.6rem;
+    margin-top: 80px;
+  }
+
+  ul {
+    width: 90%;
+  }
+
+  ul > li {
+    padding: 15px 18px;
+  }
+}
