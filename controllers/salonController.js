@@ -80,3 +80,23 @@ exports.salon_delete = async (req, res) => {
   await Salon.findByIdAndDelete(req.params.salonId)
   res.redirect("/salon")
 }
+
+exports.searchBar = async (req, res) => {
+  let outPut
+  let salons
+  req.session.user.role === "owner"
+    ? (salons = await Salon.find({ ownerId: req.session.user._id }))
+    : (salons = await Salon.find())
+  if (!req.body.search) {
+    outPut = salons
+  } else {
+    outPut = salons.filter((salon) => {
+      return (
+        salon.name.toLowerCase().includes(req.body.search.toLowerCase()) ||
+        salon.location.toLowerCase().includes(req.body.search.toLowerCase())
+      )
+    })
+  }
+
+  res.render("salons/index.ejs", { salons: outPut })
+}
