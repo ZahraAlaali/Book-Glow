@@ -36,7 +36,6 @@ exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
   const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
   const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
-  res.render("salons/show.ejs", { salon , appointments, services, ratings, userRating})
   const services = await Service.find({ salonId: req.params.salonId })
   const userRating = await Rating.findOne({
     salonId: req.params.salonId,

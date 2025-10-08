@@ -180,8 +180,7 @@
 </form>
 
 <% if(appointments.length>0) { %>
-<form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
-  <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
+  <form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
     <select name="appointment">
       <% appointments.forEach(appointment=> {%>
       <option value="<%= appointment._id %>">
