@@ -42,7 +42,6 @@ button:hover {
   background-color: #ff4081;
 }
 
-/* ----- Owner Salon Section ----- */
 .ownerSalon {
   margin-top: 30px;
   display: flex;
@@ -67,7 +66,6 @@ button:hover {
   gap: 15px;
 }
 
-/* ----- Comments Section ----- */
 aside {
   width: 90%;
   max-width: 800px;

@@ -1,13 +1,10 @@
-/* ===============================
-   General Service Styles
-================================== */
+
 
 .addService,
 .editService {
   display: none;
 }
 
-/* Container for all services */
 .serviceContainer {
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +15,6 @@
   max-width: 1000px;
 }
 
-/* ====== Each Service Card ====== */
 .serviceList {
   background-color: #ffe6f1;
   border-radius: 20px;
@@ -43,7 +39,6 @@
   font-weight: 500;
 }
 
-/* Buttons inside service cards */
 .serviceList form,
 .serviceList button {
   margin-top: 10px;
@@ -66,7 +61,6 @@
   transform: scale(1.05);
 }
 
-/* Buttons grouped together */
 .serviceList .buttons {
   display: flex;
   justify-content: center;
@@ -74,7 +68,6 @@
   margin-top: 10px;
 }
 
-/* ====== Add / Edit Service Forms ====== */
 .serviceForm {
   margin-top: 40px;
   display: flex;
@@ -112,7 +105,6 @@
   font-size: 16px;
 }
 
-/* Add / Cancel Buttons */
 .serviceForm button,
 #addService {
   width: 150px;
@@ -139,7 +131,6 @@
   gap: 10px;
 }
 
-/* ====== Animation for smooth appearance ====== */
 @keyframes fadeIn {
   from {
     opacity: 0;
