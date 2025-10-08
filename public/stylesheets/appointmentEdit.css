@@ -1,0 +1,88 @@
+body {
+  font-family: 'Cardo', serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: #d63384;
+}
+
+/* Salon info */
+h3, p {
+  text-align: center;
+  margin: 10px 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Form container */
+form {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Select box */
+select {
+  width: 100%;
+  height: 120px;
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select:focus {
+  border-color: #d63384;
+  box-shadow: 0 0 5px rgba(214,51,132,0.3);
+}
+
+/* Submit button */
+button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background-color: #d63384;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #b02a6b;
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  select {
+    height: 100px;
+  }
+}
