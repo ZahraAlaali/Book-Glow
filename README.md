@@ -39,7 +39,7 @@
 
 ### ***Screenshots***
 #### ERD
-![ERD](./imgs/ERD Updated.png)
+![ERD](./imgs/ERD%20Updated.png)
 #### Wireframe
 [Wireframe](https://www.figma.com/proto/cOWrBpZMVUvuhdoyK28fBW/Book---Glow?node-id=0-1&t=wtiKJ1FbfEvCFCzG-1)
 
@@ -52,4 +52,4 @@
 ***
 
 ### ***Credits***
-#### Rating Stars:[codepen](https://codepen.io/hesguru/pen/BaybqXv)
+#### Rating Stars : [codepen](https://codepen.io/hesguru/pen/BaybqXv)
