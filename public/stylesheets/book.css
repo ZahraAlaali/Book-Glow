@@ -1,0 +1,138 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+  color: #333;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.appointments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #ffe6f0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.radio-label:hover{
+  background: #ffb3d9;
+  transform: translateY(-2px)
+}
+.booking-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+.booking-header{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.booking-header h1 {
+  font-size: 2.5rem;
+  color: #ff4da6;
+  margin-bottom: 10px;
+}
+
+.booking-header p {
+font-size: 1.1rem;
+color: #555;
+}
+
+.booking-form {
+  background: #fff;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.form-group {
+  margin-bottom: 20px;
+  width: 800px;
+
+}
+
+h2 {
+  color: #555;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 100%;
+  height: 120px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+}
+
+select:focus {
+  border-color: #ff69b4;
+  box-shadow: 0 0 5px rgba(255,105,180,0.5);
+}
+
+.radio-label {
+  display: block;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #ffe6f0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.radio-label:hover {
+  background: #ffb3d9;
+  transform: translateX(3px);
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  background-color: #ff69b4;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+  transform: scale(1.03);
+}
+
+@media (max-width: 650px) {
+  .booking-form{
+    padding: 30px 20px;
+  }
+}
