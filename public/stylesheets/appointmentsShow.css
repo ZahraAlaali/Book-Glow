@@ -1,0 +1,96 @@
+
+body {
+  font-family: 'Cardo', serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: #d63384;
+  letter-spacing: 1px;
+}
+
+
+.appointment-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+.appointment-container p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.appointment-container ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.appointment-container ul li {
+  margin-bottom: 6px;
+}
+
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+.actions a {
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.actions a:hover {
+  background-color: #d63384;
+  color: #fff;
+}
+
+
+.actions form button {
+  background-color: #d63384;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.actions form button:hover {
+  background-color: #b02a6b;
+  transform: scale(1.03);
+}
+
+@media (max-width: 600px) {
+  .appointment-container {
+    padding: 20px 15px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
