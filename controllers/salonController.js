@@ -71,3 +71,10 @@ exports.salon_delete = async (req, res) => {
   await Salon.findByIdAndDelete(req.params.salonId)
   res.redirect("/salon")
 }
+
+exports.searchBar = async (req,res)=>{
+  let outPut
+  let salons
+  req.session.user.role === "owner"? salons = await Salon.find({ownerId: req.session.user._id}): salons = await Salon.find()
+
+}
