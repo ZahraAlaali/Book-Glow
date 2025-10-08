@@ -103,9 +103,9 @@
   <p>Location: <%= salon.location %></p>
 
   <div class="buttons">
-    <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
+    <a href="/salon/<%= salon._id %>/edit"><button>Edit Salon</button></a>
     <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
-      <button type="submit">Delete</button>
+      <button type="submit">Delete Salon</button>
     </form>
   </div>
 </div>
@@ -155,12 +155,13 @@
 
 <button id="addService">Add Service</button>
 
+<div class="serviceForm">
 <form
   class="addService addFormService"
   action="/service/<%= salon._id %>"
   method="post"
 >
-  <h3>Add Service</h3>
+  <h3 class="title">Add Service</h3>
   <label for="name">Service Title</label>
   <input type="text" name="name" required />
   <br />
@@ -168,9 +169,9 @@
   <label for="price">Starting Price</label>
   <input type="number" name="price" min="0" required />
   <br />
-
+  <div class="buttons">
   <button type="submit">Add Service</button>
-  <button id="cancelAdd">Cancel</button>
+  <button id="cancelAdd">Cancel</button></div>
 </form>
 
 <% if(appointments.length>0) { %>
@@ -182,6 +183,7 @@
   </select>
   <button type="submit">Delete</button>
 </form>
+</div>
 <% } %>
 <br />
 <a href="/appointment/<%= salon._id%>/appointments/new"
