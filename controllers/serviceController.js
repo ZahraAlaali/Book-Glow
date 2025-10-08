@@ -1,6 +1,12 @@
 const Salon = require("../models/Salon")
 const Service = require("../models/Service")
 
+exports.service_index_get = async (req, res) => {
+  const salon = await Salon.findById(req.params.salonId);
+  const services = await Service.findById({ salonId: salon._id});
+  res.render("services/index.ejs", { salon, services, user: req.user})
+}
+
 exports.addService_get = async (req, res) => {
   const salon = { _id: "68de6ea59b85efa19f5de528" }
   res.render("services/create.ejs", { salon })
