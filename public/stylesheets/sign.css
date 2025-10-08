@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Cardo", serif;
   background: linear-gradient(135deg, #ffe6f0, #fff0f5);
   display: flex;
   flex-direction: column;

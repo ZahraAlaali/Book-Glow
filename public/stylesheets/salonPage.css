@@ -14,12 +14,13 @@ body {
 
 header {
   width: 100%;
-  min-height: 60vh;
+  min-height: 75vh;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(https://i.pinimg.com/1200x/18/d5/2c/18d52cb0c7382949d58c3a3251e2f7f0.jpg);
+    url(https://traditional-amethyst-9y18qufnh5.edgeone.app/IMG-20251008-WA0030.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+   background-attachment: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;

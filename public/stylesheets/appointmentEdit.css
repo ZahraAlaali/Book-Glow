@@ -1,21 +1,23 @@
 body {
-  font-family: 'Cardo', serif;
+  font-family: "Cardo", serif;
   margin: 0;
   padding: 0;
   background-color: #f9f9f9;
   color: #333;
+  font-family: "Cardo", serif;
 }
 
 h1 {
   text-align: center;
   margin-top: 40px;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 2rem;
   color: #d63384;
 }
 
 /* Salon info */
-h3, p {
+h3,
+p {
   text-align: center;
   margin: 10px 0;
   color: #555;
@@ -29,7 +31,7 @@ form {
   padding: 25px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -50,7 +52,7 @@ select {
 
 select:focus {
   border-color: #d63384;
-  box-shadow: 0 0 5px rgba(214,51,132,0.3);
+  box-shadow: 0 0 5px rgba(214, 51, 132, 0.3);
 }
 
 /* Submit button */

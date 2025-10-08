@@ -1,37 +1,89 @@
+/* ===== RESET ===== */
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
+/* ===== BASE ===== */
 body {
-  height: 100vh;
-  width: 100vw;
+  font-family: "Cardo", serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background: url("https://i.pinimg.com/736x/7c/68/54/7c6854c4cf90162e40ef8e24a8ef89fb.jpg");
-  background-size: cover;
-  background-repeat: no-repeat; */
+  min-height: 100vh;
+  text-align: center;
 }
 
+/* ===== HEADINGS ===== */
+h1 {
+  color: #d63384;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 10px rgba(214, 51, 132, 0.3);
+}
+
+h2 {
+  color: #555;
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  font-family: "Cardo", serif;
+  font-weight: 400;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BUTTONS CONTAINER ===== */
 div {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 30px;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+/* ===== BUTTON STYLE ===== */
 button {
   width: 150px;
-  height: 40px;
+  height: 45px;
   border-radius: 15px;
-  font-size: 15px;
-  transition: transform 0.2s ease, color 0.2s ease;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 5px 10px rgba(255, 105, 180, 0.3);
 }
 
 button:hover {
   transform: scale(1.08);
-  background-color: #ff4081;
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  div {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
