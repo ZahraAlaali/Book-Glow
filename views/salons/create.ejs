@@ -10,8 +10,6 @@
   <h1>Create a New Salon</h1>
 
   <form action="/salon/create" method="post" enctype="multipart/form-data">
-    <label for="salonImg">Salon Image</label>
-    <input type="file" name="salonImg" class="custom-file-input" />
 
     <label for="name">Name</label>
     <input type="text" name="name" />
@@ -22,8 +20,38 @@
     <label for="phone">Phone Number</label>
     <input type="number" name="phone" />
 
+    <div class="file-upload-wrapper">
+      <label for="salonImg">Salon Image</label>
+      <input type="file" name="salonImg" id="salonImg" class="hidden-file-input" />
+      <label for="salonImg" class="file-label">
+        <span id="file-button-text">Choose File</span>
+        <span id="file-name-display"></span>
+      </label>
+    </div>
+
     <button type="submit">Add Your Salon</button>
   </form>
 </div>
 
+<script>
+  const fileInput = document.getElementById('salonImg');
+  const fileNameDisplay = document.getElementById('file-name-display');
+  const fileButtonText = document.getElementById('file-button-text');
 
+  fileInput.addEventListener('change', (event) => {
+    // Check if a file was selected
+    if (event.target.files.length > 0) {
+      // Get the name of the first file selected
+      const fileName = event.target.files[0].name;
+
+      // Update the display with the file name and hide "Choose File"
+      fileNameDisplay.textContent = fileName;
+      fileButtonText.style.display = 'none';
+      fileNameDisplay.style.marginLeft = '10px'; // Add some padding
+    } else {
+      // If the selection is cleared (unlikely with just a file input, but good practice)
+      fileNameDisplay.textContent = '';
+      fileButtonText.style.display = 'inline';
+    }
+  });
+</script>
