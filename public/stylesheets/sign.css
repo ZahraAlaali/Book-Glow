@@ -3,74 +3,89 @@
   margin: 0;
 }
 
+/* Keep body layout simple */
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-div {
+/* Center only the sign-in box */
+.sign-box {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 360px;
+  text-align: center;
+  margin: 0 auto; /* horizontally center */
 }
 
-div h1 {
+/* Heading */
+.sign-box h1 {
   padding: 20px;
+  color: #d63384;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-div input {
+/* Labels */
+.sign-box label {
+  font-size: 18px;
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+}
+
+/* Inputs */
+.sign-box input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin-bottom: 15px;
   border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-div label {
-  font-size: 20px;
-}
-
-div button {
+/* Button */
+.sign-box button {
   width: 150px;
   height: 40px;
   border-radius: 15px;
   font-size: 15px;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-div button:hover {
-  transform: scale(1.08);
-  background-color: #ff4081;
-  cursor: pointer;
-}
-
-.selection select {
-  width: 335px;
-  height: 40px;
-  padding: 5px 10px;
-  border: 1px solid black;
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-input[type="file"] {
-  width: 100%;
-  border-radius: 10px;
-  font-size: 15px;
-}
-
-input[type="file"]::file-selector-button {
-  background-color: #ff4081;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
   color: white;
   border: none;
-  border-radius: 15px;
-  width: 150px;
-  height: 40px;
-  font-size: 15px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sign-box button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+}
+
+/* Optional: responsive */
+@media (max-width: 400px) {
+  .sign-box {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .sign-box h1 {
+    font-size: 1.5rem;
+  }
+
+  .sign-box button {
+    width: 100%;
+  }
 }
 
