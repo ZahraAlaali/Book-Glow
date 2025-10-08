@@ -1,22 +1,20 @@
-
 body {
-  font-family: 'Cardo', serif;
+  font-family: "Cardo", serif;
   margin: 0;
   padding: 0;
   background-color: #f9f9f9;
   color: #333;
+  font-family: "Cardo", serif;
 }
-
 
 h1 {
   text-align: center;
   margin-top: 40px;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 2rem;
   color: #d63384;
   letter-spacing: 1px;
 }
-
 
 .appointment-container {
   max-width: 600px;
@@ -24,9 +22,8 @@ h1 {
   background: #fff;
   border-radius: 12px;
   padding: 30px 25px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-
 
 .appointment-container p {
   font-size: 1rem;
@@ -43,14 +40,12 @@ h1 {
   margin-bottom: 6px;
 }
 
-
 .actions {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
   margin-top: 20px;
 }
-
 
 .actions a {
   text-decoration: none;
@@ -66,7 +61,6 @@ h1 {
   background-color: #d63384;
   color: #fff;
 }
-
 
 .actions form button {
   background-color: #d63384;

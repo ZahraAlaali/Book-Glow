@@ -1,29 +1,29 @@
 <link rel="stylesheet" href="/stylesheets/nav.css" />
-<link rel="stylesheet" href="/stylesheets/sign.css" />
+<link rel="stylesheet" href="/stylesheets/createSalon.css" />
+
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
+
 <%- include('../partials/_navbar.ejs') %>
-<div>
-<h1>Create a New Salon</h1>
 
-<form action="/salon/create" method="post" enctype="multipart/form-data">
-  <label for="file">Salon Image</label>
-  <input type="file" name="salonImg" />
-  <br />
+<div class="create-salon-container">
+  <h1>Create a New Salon</h1>
 
-  <label for="name">Name</label>
-  <input type="text" name="name" />
+  <form action="/salon/create" method="post" enctype="multipart/form-data">
+    <label for="salonImg">Salon Image</label>
+    <input type="file" name="salonImg" class="custom-file-input" />
 
-  <br />
+    <label for="name">Name</label>
+    <input type="text" name="name" />
 
-  <label for="location">Location</label>
-  <input type="text" name="location" />
+    <label for="location">Location</label>
+    <input type="text" name="location" />
 
-  <br />
+    <label for="phone">Phone Number</label>
+    <input type="number" name="phone" />
 
-  <label for="phone">Phone Number</label>
-  <input type="number" name="phone" />
-
-  <br />
-
-  <button type="submit">Add Your Salon</button>
-</form>
+    <button type="submit">Add Your Salon</button>
+  </form>
 </div>
+
+

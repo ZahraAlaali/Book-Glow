@@ -1,5 +1,6 @@
-body{
+body {
   background-color: #fff6f9;
+  font-family: "Cardo", serif;
 }
 .editPage {
   width: min(100%, 1100px);
@@ -20,11 +21,11 @@ body{
 .editCard {
   background: #ffe6f1;
   border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 18px;
   width: min(100%, 560px);
   margin: 0 auto;
-  animation: fadeIn .25s ease;
+  animation: fadeIn 0.25s ease;
 }
 
 /* ===== Form ===== */
@@ -33,7 +34,10 @@ body{
   gap: 14px;
 }
 
-.field { display: grid; gap: 8px; }
+.field {
+  display: grid;
+  gap: 8px;
+}
 
 label {
   font-weight: 600;
@@ -49,12 +53,12 @@ input[type="number"] {
   background: #fff;
   font-size: 16px;
   outline: none;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 input[type="text"]:focus,
 input[type="number"]:focus {
   border-color: #ff82ac;
-  box-shadow: 0 0 0 3px rgba(255,130,172, .25);
+  box-shadow: 0 0 0 3px rgba(255, 130, 172, 0.25);
 }
 
 /* ===== Actions ===== */
@@ -79,9 +83,12 @@ input[type="number"]:focus {
   justify-content: center;
   min-width: 160px;
   height: 42px;
-  transition: transform .18s ease, background-color .18s ease;
+  transition: transform 0.18s ease, background-color 0.18s ease;
 }
-.btnPrimary:hover { background: #ff4081; transform: translateY(-1px); }
+.btnPrimary:hover {
+  background: #ff4081;
+  transform: translateY(-1px);
+}
 
 /* Link-styled button */
 .btnGhost {
@@ -97,20 +104,39 @@ input[type="number"]:focus {
   min-width: 120px;
   height: 42px;
 }
-.btnGhost:hover { transform: translateY(-1px); }
+.btnGhost:hover {
+  transform: translateY(-1px);
+}
 
 /* ===== Tiny polish ===== */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @media (max-width: 600px) {
-  .editCard { padding: 16px; }
-  .btnPrimary, .btnGhost { width: 100%; min-width: 0; }
-  .actions { flex-direction: column; }
+  .editCard {
+    padding: 16px;
+  }
+  .btnPrimary,
+  .btnGhost {
+    width: 100%;
+    min-width: 0;
+  }
+  .actions {
+    flex-direction: column;
+  }
 }
 /* same size for both buttons */
 .actions .btnPrimary,
 .actions .btnGhost {
-  width: 160px !important;   /* make them equal */
+  width: 160px !important; /* make them equal */
   height: 42px !important;
   padding: 0 16px !important;
   box-sizing: border-box;

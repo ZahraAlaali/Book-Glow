@@ -1,3 +1,4 @@
+/* Reset */
 * {
   padding: 0;
   margin: 0;
@@ -12,8 +13,8 @@ body {
   min-height: 100vh;
 }
 
-/* Sign-Up / Sign-In container */
-.sign-container {
+/* Container */
+.create-salon-container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@ body {
   justify-content: center;
 
   width: 360px;
-  margin: 80px auto; /* centers horizontally */
+  margin: 80px auto;
   padding: 40px 35px;
   background-color: #fff;
   border-radius: 15px;
@@ -30,7 +31,7 @@ body {
 }
 
 /* Heading */
-.sign-container h1 {
+.create-salon-container h1 {
   color: #d63384;
   font-size: 2rem;
   margin-bottom: 25px;
@@ -39,7 +40,7 @@ body {
 }
 
 /* Labels */
-.sign-container label {
+.create-salon-container label {
   display: block;
   text-align: left;
   margin: 12px 0 5px;
@@ -48,9 +49,9 @@ body {
 }
 
 /* Inputs */
-.sign-container input[type="text"],
-.sign-container input[type="email"],
-.sign-container input[type="password"] {
+.create-salon-container input[type="text"],
+.create-salon-container input[type="number"],
+.create-salon-container .custom-file-input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -61,43 +62,54 @@ body {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sign-container input:focus {
+.create-salon-container input:focus,
+.create-salon-container .custom-file-input:focus {
   border-color: #d63384;
   box-shadow: 0 0 5px rgba(214,51,132,0.3);
 }
 
-/* Button */
-.sign-container button {
-  width: 150px;
-  height: 40px;
-  border-radius: 15px;
-  font-size: 15px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #ff69b4, #ff1493);
-  color: white;
-  border: none;
+/* Style file input to look like text input */
+.create-salon-container .custom-file-input {
+  padding: 8px 10px;
+  background-color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.sign-container button:hover {
-  transform: scale(1.08);
-  background: linear-gradient(90deg, #ff1493, #ff69b4);
+/* Button Style */
+.create-salon-container button {
+  width: 160px;
+  height: 45px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ffb6c1, #ff7f9e);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+.create-salon-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
+  background: linear-gradient(90deg, #ff7f9e, #ffb6c1);
 }
 
 /* Responsive */
 @media (max-width: 400px) {
-  .sign-container {
+  .create-salon-container {
     width: 90%;
     margin: 50px auto;
     padding: 30px 20px;
   }
 
-  .sign-container h1 {
+  .create-salon-container h1 {
     font-size: 1.5rem;
   }
 
-  .sign-container button {
+  .create-salon-container button {
     width: 100%;
   }
 }

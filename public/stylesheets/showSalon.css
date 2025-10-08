@@ -11,6 +11,7 @@ body {
   background-color: #fff6f9;
   min-height: 100vh;
   padding: 50px;
+  font-family: "Cardo", serif;
 }
 
 h2,
@@ -91,7 +92,6 @@ hr {
   margin: 15px 0;
 }
 
-
 .page.container {
   max-width: 1000px;
   margin: 0 auto;
@@ -104,7 +104,6 @@ hr {
   gap: 24px;
   align-items: start;
 }
-
 
 .main {
   display: grid;
@@ -213,10 +212,14 @@ body {
 
 /* Responsive: drop to 2, then 1 on small screens */
 @media (max-width: 900px) {
-  .serviceContainer { grid-template-columns: repeat(2, 1fr); }
+  .serviceContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 600px) {
-  .serviceContainer { grid-template-columns: 1fr; }
+  .serviceContainer {
+    grid-template-columns: 1fr;
+  }
 }
 /* ==== FORCE MAX 3 PER ROW ==== */
 .serviceContainer {
@@ -227,10 +230,14 @@ body {
 
 /* Responsive: drop to 2, then 1 */
 @media (max-width: 900px) {
-  .serviceContainer { grid-template-columns: repeat(2, 1fr) !important; }
+  .serviceContainer {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 @media (max-width: 600px) {
-  .serviceContainer { grid-template-columns: 1fr !important; }
+  .serviceContainer {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* ===== User-side layout ===== */
@@ -251,8 +258,14 @@ body {
   background: #ffe6f1;
 }
 
-.userInfo { display: grid; gap: 6px; }
-.salonName { margin: 0 0 4px; font-size: 24px; }
+.userInfo {
+  display: grid;
+  gap: 6px;
+}
+.salonName {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
 
 /* Book button style (reusing your color system) */
 .btnPrimary {
@@ -263,9 +276,12 @@ body {
   padding: 10px 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform .18s ease, background-color .18s ease;
+  transition: transform 0.18s ease, background-color 0.18s ease;
 }
-.btnPrimary:hover { background: #ff4081; transform: translateY(-1px); }
+.btnPrimary:hover {
+  background: #ff4081;
+  transform: translateY(-1px);
+}
 
 .btnGhost {
   background: #fff;
@@ -275,20 +291,30 @@ body {
   padding: 10px 16px;
   cursor: pointer;
 }
-.btnGhost:hover { transform: translateY(-1px); }
+.btnGhost:hover {
+  transform: translateY(-1px);
+}
 
-.svcTitle { font-weight: 600; }
-.svcPrice { color: #333; }
+.svcTitle {
+  font-weight: 600;
+}
+.svcPrice {
+  color: #333;
+}
 
 /* Rating card */
 .ratingCard {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   padding: 16px;
   margin-top: 18px;
 }
-.ratingForm { display: grid; gap: 12px; max-width: 520px; }
+.ratingForm {
+  display: grid;
+  gap: 12px;
+  max-width: 520px;
+}
 .ratingForm textarea {
   width: 100%;
   padding: 10px 12px;
@@ -297,10 +323,16 @@ body {
   resize: vertical;
   background: #fff;
 }
-.ratingActions { display: flex; gap: 10px; align-items: center; }
+.ratingActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
 /* Make stars row compact inside the form */
-.rate { padding: 0; }
+.rate {
+  padding: 0;
+}
 
 .ratingActionsRow {
   display: flex;
@@ -311,10 +343,16 @@ body {
 }
 
 /* Keep the delete form inline so it sits in the same row */
-.deleteForm { display: inline; }
+.deleteForm {
+  display: inline;
+}
 
 /* Optional: tighten the rating form layout */
-.ratingForm { display: grid; gap: 12px; max-width: 520px; }
+.ratingForm {
+  display: grid;
+  gap: 12px;
+  max-width: 520px;
+}
 
 /* --- Fix Book Appointment button on user side --- */
 .userActions a {
@@ -328,15 +366,17 @@ body {
   justify-content: center;
   /* beat any global button size rules */
   width: auto !important;
-  min-width: 200px;       /* enough for the text */
-  height: 44px;           /* consistent pill height */
-  padding: 0 18px;        /* comfy horizontal space */
-  white-space: nowrap;    /* keep on one line */
-  line-height: 1;         /* avoid extra vertical space */
+  min-width: 200px; /* enough for the text */
+  height: 44px; /* consistent pill height */
+  padding: 0 18px; /* comfy horizontal space */
+  white-space: nowrap; /* keep on one line */
+  line-height: 1; /* avoid extra vertical space */
   border-radius: 14px;
   font-weight: 600;
   font-size: 16px;
 }
 
 /* optional: give the block a little spacing from the info */
-.userActions { margin-top: 10px; }
+.userActions {
+  margin-top: 10px;
+}
