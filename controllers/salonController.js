@@ -49,6 +49,9 @@ exports.salon_show_get = async (req, res) => {
   const ratings = await Rating.find({ salonId: req.params.salonId }).populate(
     "userId"
   )
+  const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
+  const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
+  const services = await Service.find({ salonId: req.params.salonId })
   const userRating = await Rating.findOne({
     salonId: req.params.salonId,
     userId: req.session.user._id,
@@ -57,6 +60,8 @@ exports.salon_show_get = async (req, res) => {
 
   const salonImg = await Salon.find({ salonImg: req.params.salonImg })
   console.log(userRating)
+
+
   res.render("salons/show.ejs", {
     salon,
     appointments,
@@ -80,6 +85,9 @@ exports.salon_update_put = async (req, res) => {
 }
 
 exports.salon_delete = async (req, res) => {
+  await Rating.deleteMany({salonId: req.params.salonId})
+  await Service.deleteMany({ salonId: req.params.salonId })
+  await Appointment.deleteMany({ salonId: req.params.salonId })
   await Salon.findByIdAndDelete(req.params.salonId)
   res.redirect("/salon")
 }

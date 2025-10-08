@@ -7,10 +7,8 @@ const appointmentSchema = new mongoose.Schema(
     },
     services: [
       {
-        serviceId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Service",
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Service",
       },
     ],
     salonId: {
