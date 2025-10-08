@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../../stylesheets/salonPage.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
   </head>
   <body>
     <%- include("../partials/_navbar.ejs") %>
@@ -15,7 +16,7 @@
         <button type="submit">🔍</button>
       </form>
     </div>
-  
+
     <header>
       <h4>
         Hello <%= user.username %>! Start exploring! Find your perfect salon and
@@ -35,15 +36,15 @@
       <br />
       <a href="/salon/create"><button>Add Salon</button></a>
 
-      <% } %> 
-      <% if(user.role == 'user'){ %> 
+      <% } %>
+      <% if(user.role == 'user'){ %>
       <% salons.forEach(salon=>{%>
       <div class="salon">
         <img src="<%= salon.salonImg %>" alt="salonImg" />
         <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
       </div>
       <br />
-      <%}) %> 
+      <%}) %>
       <% } %>
     </main>
 

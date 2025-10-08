@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/stylesheets/sign.css" />
+<div>
 <form action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT" method="post">
   <label for="name">Service Title</label>
   <input type="text" name="name" value="<%= service.name %>" required />
@@ -9,3 +11,4 @@
 
   <button type="submit">Edit Service</button>
 </form>
+</div>
