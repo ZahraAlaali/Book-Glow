@@ -56,3 +56,21 @@ div button:hover {
   font-size: 15px;
   cursor: pointer;
 }
+
+input[type="file"] {
+  width: 100%;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  width: 150px;
+  height: 40px;
+  font-size: 15px;
+  cursor: pointer;
+}
+

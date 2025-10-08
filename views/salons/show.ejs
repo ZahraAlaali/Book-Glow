@@ -1,6 +1,7 @@
 <head>
-  <link rel="stylesheet" href="../../stylesheets/nav.css" />
-  <link rel="stylesheet" href="../../stylesheets/showSalon.css" />
+  <link rel="stylesheet" href="/stylesheets/nav.css" />
+  <link rel="stylesheet" href="/stylesheets/showSalon.css" />
+  <link rel="stylesheet" href="/stylesheets/serviceStyle.css" />
   <script src="/scripting/script.js" defer></script>
 </head>
 
@@ -108,7 +109,7 @@
 
 <div class="ownerSalon">
   <% if(user.role === 'owner'){%>
-    
+
   <img src="<%= salon.salonImg %>" alt="salonImg" />
 
   <p>Name: <%= salon.name %></p>
@@ -116,11 +117,12 @@
   <p>Phone: <%= salon.phone %></p>
   <p>Location: <%= salon.location %></p>
 
-  <a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
-  <br /><br />
-  <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
-    <button type="submit">Delete</button>
-  </form>
+  <div class="buttons">
+    <a href="/salon/<%= salon._id %>/edit"><button>Edit Salon</button></a>
+    <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
+      <button type="submit">Delete Salon</button>
+    </form>
+  </div>
 </div>
 
 <!-- services -->
@@ -165,14 +167,16 @@
 <% }) %>
 <!-- end of service forEach -->
 <br />
+
 <button id="addService">Add Service</button>
 
+<div class="serviceForm">
 <form
   class="addService addFormService"
   action="/service/<%= salon._id %>"
   method="post"
 >
-  <h3>Add Service</h3>
+  <h3 class="title">Add Service</h3>
   <label for="name">Service Title</label>
   <input type="text" name="name" required />
   <br />
@@ -180,9 +184,9 @@
   <label for="price">Starting Price</label>
   <input type="number" name="price" min="0" required />
   <br />
-
+  <div class="buttons">
   <button type="submit">Add Service</button>
-  <button id="cancelAdd">Cancel</button>
+  <button id="cancelAdd">Cancel</button></div>
 </form>
 
 <% if(appointments.length>0) { %>
