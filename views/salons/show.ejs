@@ -1,7 +1,7 @@
 <head>
-  <link rel="stylesheet" href="/stylesheets/nav.css" />
   <link rel="stylesheet" href="/stylesheets/showSalon.css" />
   <link rel="stylesheet" href="/stylesheets/serviceStyle.css" />
+  <link rel="stylesheet" href="/stylesheets/button.css" />
   <link rel="stylesheet" href="/stylesheets/stars.css">
   <script src="/scripting/script.js" defer></script>
 </head>
@@ -23,7 +23,7 @@
 >
 
 <% services.forEach(service=>{ %>
-<div>
+<div class="serviceList">
   <p>Service: <%= service.name %></p>
   <p>Starting Price: <%= service.price %></p>
 </div>
@@ -127,11 +127,13 @@
 </div>
 
 <!-- services -->
+ <div class="serviceContainer">
 <% services.forEach(service=>{ %>
-<div>
+<div class="serviceList">
   <p>Service: <%= service.name %></p>
   <p>Starting Price: <%= service.price %></p>
 </div>
+<div>
 <form
   action="/service/<%= salon._id %>/<%= service._id %>?_method=DELETE"
   method="post"
@@ -142,6 +144,7 @@
 <a href="/service/<%= salon._id %>/<%= service._id %>/edit"><button id="editService">Edit</button></a>
 
 <% }) %>
+</div>
 <!-- end of service forEach -->
 <br />
 
