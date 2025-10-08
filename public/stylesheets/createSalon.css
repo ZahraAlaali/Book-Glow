@@ -19,7 +19,6 @@ h1 {
   text-align: center;
 }
 
-/* ===== Form Container ===== */
 .create-salon-container {
   background-color: #ffe9f0;
   border-radius: 20px;
@@ -30,7 +29,6 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Form ===== */
 form {
   display: flex;
   flex-direction: column;
@@ -44,7 +42,6 @@ label {
 
 input[type="text"],
 input[type="number"] {
-  /* Removed input[type="file"] from this selector */
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px 12px;
@@ -59,18 +56,15 @@ input:focus {
   border-color: #ff82ac;
 }
 
-/* ===== File Input Styling ===== */
 
-/* 1. Hides the default file input button */
 .hidden-file-input {
   display: none;
 }
 
-/* 2. Styles the label to act as the button */
 .file-label {
-  display: flex; /* Changed to flex to help center content */
-  align-items: center; /* Vertically center content */
-  justify-content: center; /* Horizontally center content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 150px;
   height: 40px;
   border-radius: 15px;
@@ -78,11 +72,10 @@ input:focus {
   color: white;
   font-size: 15px;
   font-weight: 500;
-  /* Removed line-height: 40px; since flexbox handles centering */
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
   margin-top: 5px;
-  overflow: hidden; /* Ensures long file names don't break the button */
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -92,13 +85,11 @@ input:focus {
 }
 
 #file-name-display {
-  /* Ensure the displayed file name text is styled correctly */
-  max-width: 90%; /* Prevent file name from overflowing button */
+  max-width: 90%;
   overflow: hidden;
-  text-overflow: ellipsis; /* Add "..." for long file names */
+  text-overflow: ellipsis;
 }
 
-/* ===== Buttons ===== */
 button {
   width: 150px;
   height: 40px;
@@ -118,7 +109,6 @@ button:hover {
   background-color: #ff4081;
 }
 
-/* ===== Responsive ===== */
 @media (max-width: 600px) {
   .create-salon-container {
     padding: 20px;
