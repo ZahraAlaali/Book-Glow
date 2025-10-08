@@ -47,14 +47,14 @@ app.use("/auth", authRouter)
 
 // Salon Router
 const salonRouter = require("./routes/salonsRouter")
-app.use("/salon", salonRouter)
+app.use("/salon",isSignedIn, salonRouter)
 
 const serviceRouter = require("./routes/serviceRouter")
-app.use("/service", serviceRouter)
+app.use("/service",isSignedIn, serviceRouter)
 
 // Rating Router
 const ratingRouter = require("./routes/ratingsRouter")
-app.use("/rating", ratingRouter)
+app.use("/rating",isSignedIn, ratingRouter)
 
 // // User Router
 // const userRouter = require("./routes/userRouter")
@@ -62,7 +62,7 @@ app.use("/rating", ratingRouter)
 
 
 const appointmentRouter = require('./routes/appointments')
-app.use('/appointment', appointmentRouter)
+app.use('/appointment',isSignedIn, appointmentRouter)
 
 app.get("/", (req, res) => {
   res.render("index.ejs")
