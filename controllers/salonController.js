@@ -34,19 +34,10 @@ exports.get_index = async (req, res) => {
 
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
-<<<<<<< HEAD
-  const services = await Service.find({salonId: req.params.salonId})
   const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
   const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
-  const userRating = await Rating.findOne({salonId: req.params.salonId, userId: req.session.user._id})
-  console.log(userRating)
   res.render("salons/show.ejs", { salon , appointments, services, ratings, userRating})
-=======
   const services = await Service.find({ salonId: req.params.salonId })
-  const appointments = await Appointment.find({ salonId: req.params.salonId })
-  const ratings = await Rating.find({ salonId: req.params.salonId }).populate(
-    "userId"
-  )
   const userRating = await Rating.findOne({
     salonId: req.params.salonId,
     userId: req.session.user._id,
@@ -58,7 +49,6 @@ exports.salon_show_get = async (req, res) => {
     ratings,
     userRating,
   })
->>>>>>> 826b9fbfa5cd704c40b8ae874f7c541623c60ba5
 }
 
 exports.salon_edit_get = async (req, res) => {
