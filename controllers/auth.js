@@ -63,7 +63,7 @@ exports.auth_signin_post = async (req, res) => {
     salons = await Salon.find({ ownerId: req.session.user._id })
   }
 
-  res.render("salons/index.ejs", { salons, user: req.session.user })
+  res.redirect("/salon")
 }
 
 exports.signOut = async (req, res) => {

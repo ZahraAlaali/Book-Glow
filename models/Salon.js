@@ -6,6 +6,9 @@ const salonSchema = new mongoose.Schema(
     location: String,
     phone: Number,
     ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    salonImg: {
+      type: String,
+    },
   },
   { timestamps: true }
 )

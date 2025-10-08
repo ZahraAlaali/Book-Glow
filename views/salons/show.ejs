@@ -107,6 +107,8 @@
 <!-- end of user -->
 <% if(user.role === 'owner'){%>
 <p>Name: <%= salon.name %></p>
+<img src="<%= salon.salonImg %>" alt="salonImg" />
+
 <p>Phone: <%= salon.phone %></p>
 <p>Location: <%= salon.location %></p>
 
@@ -180,8 +182,7 @@
 </form>
 
 <% if(appointments.length>0) { %>
-<form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
-  <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
+  <form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
     <select name="appointment">
       <% appointments.forEach(appointment=> {%>
       <option value="<%= appointment._id %>">
@@ -197,7 +198,25 @@
     ><button>Add Appointments</button></a
   >
 
+  <h3>Booked Appointments</h3>
+  <ul>
+    <% appointments.forEach(appointment => { %>
+    <% if (appointment.userId) {%>
+    <li>
+      <strong>Date:</strong> <%= appointment.dateTime.toLocaleString() %><br>
+      <strong>Booked by:</strong> <%= appointment.userId.username %><br>
+      <strong>Services:</strong>
+      <ul>
+        <% appointment.services.forEach(service => { %>
+        <li><%= service.name %> - $<%= service.price %></li>
+        <% }) %>
+      </ul>
+    </li>
+    <% } %>
+  <% }) %>
+  </ul>
   <% } %>
+
   <!-- end of owner -->
 
   <aside>
