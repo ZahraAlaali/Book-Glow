@@ -30,15 +30,16 @@
 ***
 
 ### ***Getting Started***
-#### Sign up and sign in as a new user and then walk through the Ranger creation page to begin your warband.
-#### A Trello board was used to keep track of development progress and can be viewed [here](https://trello.com/boardinvited/68dd270b846e4395c2f5ba44/68dd2778353cc7bf5fb48947/6bc23424b0161e447ed2b578db3187cd?utm_source=eval-email&utm_medium=email&utm_campaign=board-invite).
+#### Sign up or sign in as a new user, then explore salons, browse services, and book your appointments effortlessly.
+
+#### A Trello board was used to track development progress and can be viewed [here](https://trello.com/boardinvited/68dd270b846e4395c2f5ba44/68dd2778353cc7bf5fb48947/6bc23424b0161e447ed2b578db3187cd?utm_source=eval-email&utm_medium=email&utm_campaign=board-invite).
 #### The project itself was deployed and can be viewed [here]().
 
 ***
 
 ### ***Screenshots***
 #### ERD
-![ERD](./imgs/ERD.png)
+![ERD](./imgs/ERD Updated.png)
 #### Wireframe
 [Wireframe](https://www.figma.com/proto/cOWrBpZMVUvuhdoyK28fBW/Book---Glow?node-id=0-1&t=wtiKJ1FbfEvCFCzG-1)
 
