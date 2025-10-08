@@ -1,10 +1,8 @@
-/* ===== base layout ===== */
 .container { width: min(100%, 1100px); margin: 0 auto; padding: 18px; }
 .section   { padding-top: 10px; }
 .pageHeader { text-align: center; margin-bottom: 16px; }
 .pageHeader h1 { font-size: 26px; }
 
-/* ===== grid (max 3 per row) ===== */
 .appointmentsGrid {
   list-style: none;
   margin: 0;
@@ -16,7 +14,12 @@
 @media (max-width: 900px) { .appointmentsGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .appointmentsGrid { grid-template-columns: 1fr; } }
 
-/* ===== card ===== */
+body{
+  background-color: #fef7fa;
+  margin: 0;
+
+}
+
 .apptCard {
   background: #ffe6f1;
   border-radius: 16px;
@@ -29,7 +32,7 @@
 .apptCard:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,.14); }
 .datetime { font-weight: 600; }
 
-/* ===== actions row ===== */
+
 .actions {
   display: flex;
   gap: 10px;
@@ -38,7 +41,7 @@
 }
 .inlineForm { display: inline; margin: 0; }
 
-/* ===== buttons (theme-matching) ===== */
+
 .btnPrimary {
   background: #ff82ac;
   color: #fff;
@@ -64,7 +67,7 @@
 .btnGhost:hover { transform: translateY(-1px); }
 
 .btnDanger {
-  background: #ff6b6b;
+  background: #fc0176;
   color: #fff;
   border: 0;
   border-radius: 12px;
