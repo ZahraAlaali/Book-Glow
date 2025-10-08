@@ -1,6 +1,6 @@
 const Salon = require("../models/Salon.js")
 const Service = require("../models/Service")
-const Appointment = require('../models/Appointment')
+const Appointment = require("../models/Appointment")
 const Rating = require("../models/Rating")
 
 exports.salon_create_get = async (req, res) => {
@@ -23,18 +23,42 @@ exports.salon_create_post = async (req, res) => {
 }
 
 exports.get_index = async (req, res) => {
-  const salons = await Salon.find({ ownerId: req.session.user._id })
+  let salons
+  if (req.session.user.role === "user") {
+    salons = await Salon.find()
+  } else {
+    salons = await Salon.find({ ownerId: req.session.user._id })
+  }
   res.render("salons/index.ejs", { salons })
 }
 
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
+<<<<<<< HEAD
   const services = await Service.find({salonId: req.params.salonId})
   const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
   const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
   const userRating = await Rating.findOne({salonId: req.params.salonId, userId: req.session.user._id})
   console.log(userRating)
   res.render("salons/show.ejs", { salon , appointments, services, ratings, userRating})
+=======
+  const services = await Service.find({ salonId: req.params.salonId })
+  const appointments = await Appointment.find({ salonId: req.params.salonId })
+  const ratings = await Rating.find({ salonId: req.params.salonId }).populate(
+    "userId"
+  )
+  const userRating = await Rating.findOne({
+    salonId: req.params.salonId,
+    userId: req.session.user._id,
+  })
+  res.render("salons/show.ejs", {
+    salon,
+    appointments,
+    services,
+    ratings,
+    userRating,
+  })
+>>>>>>> 826b9fbfa5cd704c40b8ae874f7c541623c60ba5
 }
 
 exports.salon_edit_get = async (req, res) => {
@@ -50,6 +74,9 @@ exports.salon_update_put = async (req, res) => {
 }
 
 exports.salon_delete = async (req, res) => {
+  await Rating.deleteMany({salonId: req.params.salonId})
+  await Service.deleteMany({ salonId: req.params.salonId })
+  await Appointment.deleteMany({ salonId: req.params.salonId })
   await Salon.findByIdAndDelete(req.params.salonId)
   res.redirect("/salon")
 }
