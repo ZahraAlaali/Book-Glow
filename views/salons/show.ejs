@@ -10,14 +10,19 @@
 
 <!-- start of user -->
 <% if(user.role === 'user'){%>
+  <div class="ownerSalon">
+<img src="<%= salon.salonImg %>" alt="salonImg" />
+
+<p>Name: <%= salon.name %></p>
 
 <h2><%=salon.name%></h2>
+
 <p>Location: <%= salon.location %></p>
 <p>
   Contact Us: <br />
   Phone Number:<%= salon.phone %>
 </p>
-
+</div>
 <a href="/appointment/<%= salon._id %>/show/book"
   ><button>Book Appointment</button></a
 >
@@ -37,37 +42,22 @@
     method="post"
   >
     <div class="rate">
-    <input type="radio" id="star5" name="rating" value="5" required
-    <% if(userRating.rating === 5) {%>
-      checked
-      <% } %>
-      />
-    <label for="star5" title="text">5 stars</label>
-    <input type="radio" id="star4" name="rating" value="4" required
-    <% if(userRating.rating === 4) {%>
-      checked
-      <% } %>
-      />
-    <label for="star4" title="text">4 stars</label>
-    <input type="radio" id="star3" name="rating" value="3" required
-    <% if(userRating.rating === 3) {%>
-      checked
-      <% } %>
-    />
-    <label for="star3" title="text">3 stars</label>
-    <input type="radio" id="star2" name="rating" value="2" required
-     <% if(userRating.rating === 2) {%>
-      checked
-      <% } %>
-    />
-    <label for="star2" title="text">2 stars</label>
-    <input type="radio" id="star1" name="rating" value="1" required
-     <% if(userRating.rating === 1) {%>
-      checked
-      <% } %>
-    />
-    <label for="star1" title="text">1 star</label>
-  </div>
+      <input type="radio" id="star5" name="rating" value="5" required <%
+      if(userRating.rating === 5) {%> checked <% } %> />
+      <label for="star5" title="text">5 stars</label>
+      <input type="radio" id="star4" name="rating" value="4" required <%
+      if(userRating.rating === 4) {%> checked <% } %> />
+      <label for="star4" title="text">4 stars</label>
+      <input type="radio" id="star3" name="rating" value="3" required <%
+      if(userRating.rating === 3) {%> checked <% } %> />
+      <label for="star3" title="text">3 stars</label>
+      <input type="radio" id="star2" name="rating" value="2" required <%
+      if(userRating.rating === 2) {%> checked <% } %> />
+      <label for="star2" title="text">2 stars</label>
+      <input type="radio" id="star1" name="rating" value="1" required <%
+      if(userRating.rating === 1) {%> checked <% } %> />
+      <label for="star1" title="text">1 star</label>
+    </div>
     <br />
 
     <label for="comment">Comment</label>
@@ -151,26 +141,30 @@
 <button id="addService">Add Service</button>
 
 <div class="serviceForm">
-<form
-  class="addService addFormService"
-  action="/service/<%= salon._id %>"
-  method="post"
->
-  <h3 class="title">Add Service</h3>
-  <label for="name">Service Title</label>
-  <input type="text" name="name" required />
-  <br />
+  <form
+    class="addService addFormService"
+    action="/service/<%= salon._id %>"
+    method="post"
+  >
+    <h3 class="title">Add Service</h3>
+    <label for="name">Service Title</label>
+    <input type="text" name="name" required />
+    <br />
 
-  <label for="price">Starting Price</label>
-  <input type="number" name="price" min="0" required />
-  <br />
-  <div class="buttons">
-  <button type="submit">Add Service</button>
-  <button id="cancelAdd">Cancel</button></div>
-</form>
+    <label for="price">Starting Price</label>
+    <input type="number" name="price" min="0" required />
+    <br />
+    <div class="buttons">
+      <button type="submit">Add Service</button>
+      <button id="cancelAdd">Cancel</button>
+    </div>
+  </form>
 
-<% if(appointments.length>0) { %>
-  <form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
+  <% if(appointments.length>0) { %>
+  <form
+    action="/appointment/<%= salon._id %>/owner?_method=DELETE"
+    method="POST"
+  >
     <select name="appointment">
       <% appointments.forEach(appointment=> {%>
       <option value="<%= appointment._id %>">
@@ -181,7 +175,7 @@
     <button type="submit">Delete</button>
   </form>
   <% } %>
-<br>
+  <br />
   <a href="/appointment/<%= salon._id%>/appointments/new"
     ><button>Add Appointments</button></a
   >
@@ -191,44 +185,45 @@
 
   <% } %>
 
-<!-- end of owner -->
+  <!-- end of owner -->
 
-<aside>
-  <h3>Comments Section</h3>
+  <aside>
+    <h3>Comments Section</h3>
 
-  <% ratings.forEach(rating => {%>
-  <div>
-    <div class="rate readonly">
-      <input type="radio" id="<%= rating._id %>-5" name="<%= rating._id %>"
-      value="5" disabled <%= rating.rating === 5 ? 'checked' : '' %> />
-      <label for="<%=  rating._id  %>-5" title="5 stars">5 stars</label>
+    <% ratings.forEach(rating => {%>
+    <div>
+      <div class="rate readonly">
+        <input type="radio" id="<%= rating._id %>-5" name="<%= rating._id %>"
+        value="5" disabled <%= rating.rating === 5 ? 'checked' : '' %> />
+        <label for="<%=  rating._id  %>-5" title="5 stars">5 stars</label>
 
-      <input type="radio" id="<%= rating._id %>-4" name="<%= rating._id %>"
-      value="4" disabled <%= rating.rating === 4 ? 'checked' : '' %> />
-      <label for="<%=  rating._id  %>-4" title="4 stars">4 stars</label>
+        <input type="radio" id="<%= rating._id %>-4" name="<%= rating._id %>"
+        value="4" disabled <%= rating.rating === 4 ? 'checked' : '' %> />
+        <label for="<%=  rating._id  %>-4" title="4 stars">4 stars</label>
 
-      <input type="radio" id="<%= rating._id %>-3" name="<%= rating._id %>"
-      value="3" disabled <%= rating.rating === 3 ? 'checked' : '' %> />
-      <label for="<%=  rating._id  %>-3" title="3 stars">3 stars</label>
+        <input type="radio" id="<%= rating._id %>-3" name="<%= rating._id %>"
+        value="3" disabled <%= rating.rating === 3 ? 'checked' : '' %> />
+        <label for="<%=  rating._id  %>-3" title="3 stars">3 stars</label>
 
-      <input type="radio" id="<%= rating._id %>-2" name="<%= rating._id %>"
-      value="2" disabled <%= rating.rating === 2 ? 'checked' : '' %> />
-      <label for="<%=  rating._id  %>-2" title="2 stars">2 stars</label>
+        <input type="radio" id="<%= rating._id %>-2" name="<%= rating._id %>"
+        value="2" disabled <%= rating.rating === 2 ? 'checked' : '' %> />
+        <label for="<%=  rating._id  %>-2" title="2 stars">2 stars</label>
 
-      <input type="radio" id="<%= rating._id %>-1" name="<%= rating._id %>"
-      value="1" disabled <%= rating.rating === 1 ? 'checked' : '' %> />
-      <label for="<%=  rating._id  %>-1" title="1 star">1 star</label>
+        <input type="radio" id="<%= rating._id %>-1" name="<%= rating._id %>"
+        value="1" disabled <%= rating.rating === 1 ? 'checked' : '' %> />
+        <label for="<%=  rating._id  %>-1" title="1 star">1 star</label>
+      </div>
+      <br />
+      <br />
+      <% if(rating.comment) {%>
+      <p><%= rating.userId.username %>: <%= rating.comment %></p>
+      <% } else{ %>
+      <br />
+      <%= rating.userId.username %>
+      <br />
+      <% } %>
+      <hr />
     </div>
-    <br />
-    <br />
-    <% if(rating.comment) {%>
-    <p><%= rating.userId.username %>: <%= rating.comment %></p>
-    <% } else{ %>
-    <br />
-    <%= rating.userId.username %>
-    <br />
-    <% } %>
-    <hr />
-  </div>
-  <% }) %>
-</aside>
+    <% }) %>
+  </aside>
+</div>
