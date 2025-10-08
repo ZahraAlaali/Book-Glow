@@ -4,7 +4,10 @@
   <link rel="stylesheet" href="/stylesheets/button.css" />
   <link rel="stylesheet" href="/stylesheets/stars.css" />
   <script src="/scripting/script.js" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400..900&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
 <%- include('../partials/_navbar.ejs') %>
@@ -12,88 +15,134 @@
   <div class="layout">
     <main class="main">
       <!-- start of user -->
-     <% if (user.role === 'user') { %>
-  <section class="userHero">
-    <img class="salonImg" src="<%= salon.salonImg %>" alt="salon image" />
+      <% if (user.role === 'user') { %>
+      <section class="userHero">
+        <img class="salonImg" src="<%= salon.salonImg %>" alt="salon image" />
 
-    <div class="userInfo">
-      <h2 class="salonName"><%= salon.name %></h2>
-      <p><strong>Name:</strong> <%= salon.name %></p>
-      <p><strong>Phone:</strong> <%= salon.phone %></p>
-      <p><strong>Location:</strong> <%= salon.location %></p>
+        <div class="userInfo">
+          <h2 class="salonName"><%= salon.name %></h2>
+          <p><strong>Name:</strong> <%= salon.name %></p>
+          <p><strong>Phone:</strong> <%= salon.phone %></p>
+          <p><strong>Location:</strong> <%= salon.location %></p>
 
-      <div class="userActions">
-        <a href="/appointment/<%= salon._id %>/show/book">
-          <button class="btnPrimary">Book Appointment</button>
-        </a>
+          <div class="userActions">
+            <a href="/appointment/<%= salon._id %>/show/book">
+              <button class="btnPrimary">Book Appointment</button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- USER services grid (3 per row) -->
+      <div class="serviceContainer">
+        <% services.forEach(service => { %>
+        <div class="serviceList">
+          <p class="svcTitle">Service: <%= service.name %></p>
+          <p class="svcPrice">Starting Price: <%= service.price %></p>
+        </div>
+        <% }) %>
       </div>
-    </div>
-  </section>
 
-  <!-- USER services grid (3 per row) -->
-  <div class="serviceContainer">
-    <% services.forEach(service => { %>
-      <div class="serviceList">
-        <p class="svcTitle">Service: <%= service.name %></p>
-        <p class="svcPrice">Starting Price: <%= service.price %></p>
-      </div>
-    <% }) %>
-  </div>
+      <!-- Rating card -->
+      <section class="ratingCard">
+        <h3>Rate Our Salon</h3>
 
-  <!-- Rating card -->
-  <section class="ratingCard">
-    <h3>Rate Our Salon</h3>
+        <% if (userRating) { %>
+        <form
+          id="editRatingForm"
+          action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT"
+          method="post"
+          class="ratingForm"
+        >
+          <div class="rate">
+            <input type="radio" id="star5" name="rating" value="5" required <%=
+            userRating.rating === 5 ? 'checked' : '' %> />
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" value="4" required <%=
+            userRating.rating === 4 ? 'checked' : '' %> />
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" value="3" required <%=
+            userRating.rating === 3 ? 'checked' : '' %> />
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" value="2" required <%=
+            userRating.rating === 2 ? 'checked' : '' %> />
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" value="1" required <%=
+            userRating.rating === 1 ? 'checked' : '' %> />
+            <label for="star1">1 star</label>
+          </div>
 
-    <% if (userRating) { %>
-      <form id="editRatingForm"
-      action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT"
-      method="post"
-      class="ratingForm">
-  <div class="rate">
-          <input type="radio" id="star5" name="rating" value="5" required <%= userRating.rating === 5 ? 'checked' : '' %> />
-          <label for="star5">5 stars</label>
-          <input type="radio" id="star4" name="rating" value="4" required <%= userRating.rating === 4 ? 'checked' : '' %> />
-          <label for="star4">4 stars</label>
-          <input type="radio" id="star3" name="rating" value="3" required <%= userRating.rating === 3 ? 'checked' : '' %> />
-          <label for="star3">3 stars</label>
-          <input type="radio" id="star2" name="rating" value="2" required <%= userRating.rating === 2 ? 'checked' : '' %> />
-          <label for="star2">2 stars</label>
-          <input type="radio" id="star1" name="rating" value="1" required <%= userRating.rating === 1 ? 'checked' : '' %> />
-          <label for="star1">1 star</label>
+          <label for="comment">Comment</label>
+          <textarea name="comment" rows="3"><%= userRating.comment %></textarea>
+        </form>
+
+        <div class="ratingActionsRow">
+          <button type="submit" form="editRatingForm" class="btnPrimary">
+            Edit Rating
+          </button>
+
+          <form
+            action="/rating/<%= salon._id %>/<%= userRating._id %>?_method=DELETE"
+            method="post"
+            class="deleteForm"
+          >
+            <button type="submit" class="btnGhost">Delete Rating</button>
+          </form>
         </div>
+        <% } else { %>
+        <form
+          action="/rating/<%= salon._id %>/<%= user._id %>"
+          method="post"
+          class="ratingForm"
+        >
+          <div class="rate">
+            <input
+              type="radio"
+              id="star5"
+              name="rating"
+              value="5"
+              required
+            /><label for="star5">5 stars</label>
+            <input
+              type="radio"
+              id="star4"
+              name="rating"
+              value="4"
+              required
+            /><label for="star4">4 stars</label>
+            <input
+              type="radio"
+              id="star3"
+              name="rating"
+              value="3"
+              required
+            /><label for="star3">3 stars</label>
+            <input
+              type="radio"
+              id="star2"
+              name="rating"
+              value="2"
+              required
+            /><label for="star2">2 stars</label>
+            <input
+              type="radio"
+              id="star1"
+              name="rating"
+              value="1"
+              required
+            /><label for="star1">1 star</label>
+          </div>
 
-        <label for="comment">Comment</label>
-        <textarea name="comment" rows="3"><%= userRating.comment %></textarea>
+          <label for="comment">Comment</label>
+          <textarea name="comment" rows="3"></textarea>
 
-      </form>
-
-<div class="ratingActionsRow">
-  <button type="submit" form="editRatingForm" class="btnPrimary">Edit Rating</button>
-
-  <form action="/rating/<%= salon._id %>/<%= userRating._id %>?_method=DELETE" method="post" class="deleteForm">
-    <button type="submit" class="btnGhost">Delete Rating</button>
-  </form>
-</div>
-    <% } else { %>
-      <form action="/rating/<%= salon._id %>/<%= user._id %>" method="post" class="ratingForm">
-        <div class="rate">
-          <input type="radio" id="star5" name="rating" value="5" required /><label for="star5">5 stars</label>
-          <input type="radio" id="star4" name="rating" value="4" required /><label for="star4">4 stars</label>
-          <input type="radio" id="star3" name="rating" value="3" required /><label for="star3">3 stars</label>
-          <input type="radio" id="star2" name="rating" value="2" required /><label for="star2">2 stars</label>
-          <input type="radio" id="star1" name="rating" value="1" required /><label for="star1">1 star</label>
-        </div>
-
-        <label for="comment">Comment</label>
-        <textarea name="comment" rows="3"></textarea>
-
-        <div class="ratingActions">
-          <button type="submit" class="btnPrimary">Create Rating</button>
-        </div>
-      </form>
-    <% } %>
-  </section>
-<% } %>
+          <div class="ratingActions">
+            <button type="submit" class="btnPrimary">Create Rating</button>
+          </div>
+        </form>
+        <% } %>
+      </section>
+      <% } %>
 
       <!-- end of user -->
 
@@ -178,12 +227,14 @@
         <% } %>
 
         <br />
-        <a href="/appointment/<%= salon._id %>/appointments/new"
-          ><button>Add Appointments</button></a
-        >
-        <a href="/appointment/<%= salon._id %>/owner/appointments"
-          ><button>View Booked Appointment</button></a
-        >
+        <div class="appointButtons">
+          <a href="/appointment/<%= salon._id %>/appointments/new"
+            ><button>Add Appointments</button></a
+          >
+          <a href="/appointment/<%= salon._id %>/owner/appointments"
+            ><button>View Booked Appointment</button></a
+          >
+        </div>
       </div>
       <% } %>
       <!-- end of owner -->
