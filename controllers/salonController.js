@@ -68,7 +68,7 @@ exports.salon_edit_get = async (req, res) => {
 
 exports.salon_update_put = async (req, res) => {
   const salonInDatabase = await Salon.findOne({ name: req.body.name })
-  if (salonInDatabase) {
+  if (!salonInDatabase._id.equals(req.params.salonId)) {
     return res.send("This Salon Already Exist!")
   }
   const salon = await Salon.findByIdAndUpdate(req.params.salonId, req.body)
