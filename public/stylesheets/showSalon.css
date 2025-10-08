@@ -22,4 +22,25 @@ body {
   width: 300px;
   height: 300px;
   border-radius: 20%;
+  margin-bottom: 20px;
 }
+
+.ownerSalon button {
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 15px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.ownerSalon button:hover {
+  transform: scale(1.08);
+  background-color: #ff4081;
+}
+
+.buttons{
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
