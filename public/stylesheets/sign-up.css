@@ -21,11 +21,11 @@ body {
   justify-content: center;
 
   width: 360px;
-  margin: 80px auto; /* centers horizontally */
+  margin: 80px auto;
   padding: 40px 35px;
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -35,7 +35,7 @@ body {
   font-size: 2rem;
   margin-bottom: 25px;
   font-weight: bold;
-  text-shadow: 1px 1px 5px rgba(214,51,132,0.3);
+  text-shadow: 1px 1px 5px rgba(214, 51, 132, 0.3);
 }
 
 /* Labels */
@@ -47,10 +47,12 @@ body {
   color: #555;
 }
 
-/* Inputs */
+/* Inputs and Selects */
 .sign-container input[type="text"],
 .sign-container input[type="email"],
-.sign-container input[type="password"] {
+.sign-container input[type="password"],
+.sign-container input[type="number"],
+.sign-container select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -58,12 +60,24 @@ body {
   border: 1px solid #ccc;
   font-size: 16px;
   outline: none;
+  background-color: #fff;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sign-container input:focus {
+/* Focus effect */
+.sign-container input:focus,
+.sign-container select:focus {
   border-color: #d63384;
-  box-shadow: 0 0 5px rgba(214,51,132,0.3);
+  box-shadow: 0 0 5px rgba(214, 51, 132, 0.3);
+}
+
+/* Dropdown style */
+.sign-container select {
+  appearance: none;
+  background: url("data:image/svg+xml;charset=UTF-8,<svg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'><path d='M0 2.5L5 7.5L10 2.5H0Z' fill='%23d63384'/></svg>")
+    no-repeat right 12px center;
+  background-size: 10px;
+  cursor: pointer;
 }
 
 /* Button */
