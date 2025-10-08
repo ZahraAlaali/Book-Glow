@@ -7,7 +7,7 @@ exports.salon_create_get = async (req, res) => {
   res.render("salons/create.ejs")
 }
 exports.salon_create_post = async (req, res) => {
-  const salonInDatabase = await Salon.findOne({ name: req.body.name})
+  const salonInDatabase = await Salon.findOne({ name: req.body.name })
   if (salonInDatabase) {
     return res.send("This Salon Already Exist!")
   }
@@ -25,17 +25,16 @@ exports.salon_create_post = async (req, res) => {
 
   const salon = await Salon.create(req.body)
 
-
   res.redirect(`/salon/${salon._id}`)
 }
 
 exports.get_index = async (req, res) => {
   let salons
-  if(req.session.user.role ==="owner"){
+  if (req.session.user.role === "owner") {
     salons = await Salon.find({
-    ownerId: req.session.user._id
-  })
-  } else{
+      ownerId: req.session.user._id,
+    })
+  } else {
     salons = await Salon.find()
   }
 
@@ -45,30 +44,20 @@ exports.get_index = async (req, res) => {
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
   const services = await Service.find({ salonId: req.params.salonId })
+  const ratings = await Rating.find({ salonId: req.params.salonId }).populate("userId")
   const appointments = await Appointment.find({ salonId: req.params.salonId })
-  const ratings = await Rating.find({ salonId: req.params.salonId }).populate(
-    "userId"
-  )
-  const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
-  const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
-  const services = await Service.find({ salonId: req.params.salonId })
+    .populate("userId")
+    .populate("services")
   const userRating = await Rating.findOne({
     salonId: req.params.salonId,
     userId: req.session.user._id,
   })
-
-
-  const salonImg = await Salon.find({ salonImg: req.params.salonImg })
-  console.log(userRating)
-
-
   res.render("salons/show.ejs", {
     salon,
     appointments,
     services,
     ratings,
     userRating,
-    salonImg,
   })
 }
 
@@ -85,7 +74,7 @@ exports.salon_update_put = async (req, res) => {
 }
 
 exports.salon_delete = async (req, res) => {
-  await Rating.deleteMany({salonId: req.params.salonId})
+  await Rating.deleteMany({ salonId: req.params.salonId })
   await Service.deleteMany({ salonId: req.params.salonId })
   await Appointment.deleteMany({ salonId: req.params.salonId })
   await Salon.findByIdAndDelete(req.params.salonId)
