@@ -1,12 +1,26 @@
-<link rel="stylesheet" href="/stylesheets/sign.css" />
-<div>
-<form action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT" method="post">
+<head>
+
+</head>
+
+<%- include("../partials/_navbar.ejs") %>
+<form
+  class="editService editFormService"
+  action="/service/<%= salonId %>/<%= service._id %>?_method=PUT"
+  method="post"
+>
+  <h3>Edit Service</h3>
   <label for="name">Service Title</label>
   <input type="text" name="name" value="<%= service.name %>" required />
   <br />
 
   <label for="price">Starting Price</label>
-  <input type="number" name="price" min="0" value="<%= service.price %>" required />
+  <input
+    type="number"
+    name="price"
+    min="0"
+    value="<%= service.price %>"
+    required
+  />
   <br />
 
   <button type="submit">Edit Service</button>

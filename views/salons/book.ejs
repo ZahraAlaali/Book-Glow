@@ -1,25 +1,46 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+<head>
+  <link rel="stylesheet" href="/stylesheets/book.css"/>
+</head>
 <%- include('../partials/_navbar.ejs') %>
-<h1>Book Appointment</h1>
 
-<form action="/appointment/<%= salonId %>/show/book" method="POST">
+<div class="booking-page">
+  <div class="booking-header">
+    <h1>Book Appointment</h1>
+    <p>Choose your favorite services and pick a convenient time.</p>
+</div>
+
+<form action="/appointment/<%= salonId %>/show/book" method="POST" class="booking-form">
+  <div class="form-group">
   <h2>Choose Services:</h2>
   <select name="services" multiple>
   <% services.forEach(service => { %>
     <option value="<%= service._id %>"><%= service.name %> - $<%= service.price %></option>
   <%})%>
 </select>
+</div>
 
+<div class="form-group">
   <h2>Choose Appointment:</h2>
+  <div class="appointments-grid">
   <% appointments.forEach(appointment => { if(!appointment.userId){ %>
-
+<label class="radio-label">
   <input
     type="radio"
     name="appointment_id"
     value="<%= appointment._id %>"
     required
   />
-  <%= appointment.dateTime.toLocaleString() %><br />
+  <%= appointment.dateTime.toLocaleString() %>
+  </label>
   <% }}) %>
+</div>
+</div>
 
+<div class="form-group">
   <button type="submit">Book Appointment</button>
+</div>
 </form>
+</div>
