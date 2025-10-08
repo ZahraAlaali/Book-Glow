@@ -35,22 +35,37 @@
     method="post"
   >
     <div class="rate">
-      <input type="radio" id="star5" name="rating" value="5" required <%
-      if(userRating.rating === 5) {%> checked <% } %> />
-      <label for="star5" title="text">5 stars</label>
-      <input type="radio" id="star4" name="rating" value="4" required <%
-      if(userRating.rating === 4) {%> checked <% } %> />
-      <label for="star4" title="text">4 stars</label>
-      <input type="radio" id="star3" name="rating" value="3" required <%
-      if(userRating.rating === 3) {%> checked <% } %> />
-      <label for="star3" title="text">3 stars</label>
-      <input type="radio" id="star2" name="rating" value="2" required <%
-      if(userRating.rating === 2) {%> checked <% } %> />
-      <label for="star2" title="text">2 stars</label>
-      <input type="radio" id="star1" name="rating" value="1" required <%
-      if(userRating.rating === 1) {%> checked <% } %> />
-      <label for="star1" title="text">1 star</label>
-    </div>
+    <input type="radio" id="star5" name="rating" value="5" required
+    <% if(userRating.rating === 5) {%>
+      checked
+      <% } %>
+      />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rating" value="4" required
+    <% if(userRating.rating === 4) {%>
+      checked
+      <% } %>
+      />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rating" value="3" required
+    <% if(userRating.rating === 3) {%>
+      checked
+      <% } %>
+    />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rating" value="2" required
+     <% if(userRating.rating === 2) {%>
+      checked
+      <% } %>
+    />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rating" value="1" required
+     <% if(userRating.rating === 1) {%>
+      checked
+      <% } %>
+    />
+    <label for="star1" title="text">1 star</label>
+  </div>
     <br />
 
     <label for="comment">Comment</label>
@@ -171,36 +186,26 @@
 </form>
 
 <% if(appointments.length>0) { %>
-<form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
-  <select name="appointment">
-    <% appointments.forEach(appointment=> {%>
-    <option value="<%= appointment._id %>"><%= appointment.dateTime %></option>
-    <% }) %>
-  </select>
-  <button type="submit">Delete</button>
-</form>
-<% } %>
-<br />
-<a href="/appointment/<%= salon._id%>/appointments/new"
-  ><button>Add Appointments</button></a
->
-
-<h3>Booked Appointments</h3>
-<ul>
-  <% appointments.forEach(appointment => { %> <% if (appointment.userId) {%>
-  <li>
-    <strong>Date:</strong> <%= appointment.dateTime.toLocaleString() %><br />
-    <strong>Booked by:</strong> <%= appointment.userId.username %><br />
-    <strong>Services:</strong>
-    <ul>
-      <% appointment.services.forEach(service => { %>
-      <li><%= service.name %> - $<%= service.price %></li>
+  <form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
+    <select name="appointment">
+      <% appointments.forEach(appointment=> {%>
+      <option value="<%= appointment._id %>">
+        <%= appointment.dateTime %>
+      </option>
       <% }) %>
-    </ul>
-  </li>
-  <% } %> <% }) %>
-</ul>
-<% } %>
+    </select>
+    <button type="submit">Delete</button>
+  </form>
+  <% } %>
+<br>
+  <a href="/appointment/<%= salon._id%>/appointments/new"
+    ><button>Add Appointments</button></a
+  >
+  <a href="/appointment/<%= salon._id %>/owner/appointments">
+    <button>View Booked Appointment</button>
+  </a>
+
+  <% } %>
 
 <!-- end of owner -->
 
