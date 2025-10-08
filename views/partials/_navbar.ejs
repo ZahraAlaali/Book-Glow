@@ -1,8 +1,8 @@
 <nav>
   <% if(user){ %>
-  <a href="/salon">Home Page</a>
+  <a href="/salon">HOME PAGE</a>
   <% if(user.role ==="user") {%>
-  <a href="/appointment/">Appointments</a>
+  <a href="/appointment/">APPOINTMENTS</a>
   <% } %>
 
   <a href="/auth/<%= user._id %>/profile">MY PROFILE</a>

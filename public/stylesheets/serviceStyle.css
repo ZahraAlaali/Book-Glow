@@ -4,3 +4,44 @@
 .editService {
   display: none;
 }
+
+.serviceForm button,#addService{
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 15px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#addService:hover {
+  transform: scale(1.08);
+  background-color: #ff4081;
+}
+
+.serviceForm button:hover {
+  transform: scale(1.08);
+  background-color: #ff4081;
+}
+
+.serviceForm{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.serviceForm .title {
+  padding: 20px;
+  text-align: center;
+}
+
+.serviceForm input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.serviceForm label {
+  font-size: 20px;
+}
