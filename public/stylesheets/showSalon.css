@@ -315,3 +315,28 @@ body {
 
 /* Optional: tighten the rating form layout */
 .ratingForm { display: grid; gap: 12px; max-width: 520px; }
+
+/* --- Fix Book Appointment button on user side --- */
+.userActions a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* beat any global button size rules */
+  width: auto !important;
+  min-width: 200px;       /* enough for the text */
+  height: 44px;           /* consistent pill height */
+  padding: 0 18px;        /* comfy horizontal space */
+  white-space: nowrap;    /* keep on one line */
+  line-height: 1;         /* avoid extra vertical space */
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* optional: give the block a little spacing from the info */
+.userActions { margin-top: 10px; }

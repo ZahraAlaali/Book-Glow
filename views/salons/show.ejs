@@ -44,8 +44,11 @@
     <h3>Rate Our Salon</h3>
 
     <% if (userRating) { %>
-      <form action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT" method="post" class="ratingForm">
-        <div class="rate">
+      <form id="editRatingForm"
+      action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT"
+      method="post"
+      class="ratingForm">
+  <div class="rate">
           <input type="radio" id="star5" name="rating" value="5" required <%= userRating.rating === 5 ? 'checked' : '' %> />
           <label for="star5">5 stars</label>
           <input type="radio" id="star4" name="rating" value="4" required <%= userRating.rating === 4 ? 'checked' : '' %> />
@@ -64,10 +67,8 @@
       </form>
 
 <div class="ratingActionsRow">
-  <!-- This button submits the edit form above -->
   <button type="submit" form="editRatingForm" class="btnPrimary">Edit Rating</button>
 
-  <!-- Delete stays its own form, but sits inline next to the edit button -->
   <form action="/rating/<%= salon._id %>/<%= userRating._id %>?_method=DELETE" method="post" class="deleteForm">
     <button type="submit" class="btnGhost">Delete Rating</button>
   </form>
