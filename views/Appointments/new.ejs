@@ -1,15 +1,25 @@
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/appointments.css" />
+  <link rel="stylesheet" href="/stylesheets/appointmentsAdd.css" />
 </head>
+
 <%- include('../partials/_navbar') %>
 
-<h1>Add a new Appointment</h1>
+<div class="newApptPage">
+  <header class="pageHeader">
+    <h1>Add a New Appointment</h1>
+  </header>
 
-<form action="/appointment/<%= salon._id %>/appointments/new" method="post">
-<label for="dateTime">Date & Time</label>
-<input type="datetime-local" name="dateTime" id="dateTime" />
-<br>
+  <section class="newApptCard">
+    <form class="apptForm" action="/appointment/<%= salon._id %>/appointments/new" method="post">
+      <div class="field">
+        <label for="dateTime">Date & Time</label>
+        <input type="datetime-local" id="dateTime" name="dateTime" required />
+      </div>
 
-
-<button type="submit">Add a new Appointment</button>
-</form>
+      <div class="actions">
+        <button type="submit" class="btnPrimary">Add Appointment</button>
+      </div>
+    </form>
+  </section>
+</div>

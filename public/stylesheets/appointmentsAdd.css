@@ -1,0 +1,67 @@
+/* ===== Create (New) Appointment page ===== */
+.newApptPage {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 20px 18px 40px;
+}
+
+.pageHeader { text-align: center; margin-bottom: 16px; }
+.pageHeader h1 { font-size: 26px; font-weight: 700; }
+
+.newApptCard {
+  background: #ffe6f1;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  padding: 18px;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  animation: fadeIn .25s ease;
+}
+
+.apptForm { display: grid; gap: 14px; }
+
+.field { display: grid; gap: 8px; }
+.field label { font-weight: 600; color: #222; }
+
+/* Inputs match your theme */
+.apptForm input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.apptForm input[type="datetime-local"]:focus {
+  border-color: #ff82ac;
+  box-shadow: 0 0 0 3px rgba(255,130,172,.25);
+}
+
+/* Button row (pill button like other pages) */
+.actions { display: flex; gap: 10px; justify-content: center; margin-top: 6px; }
+.btnPrimary {
+  background: #ff82ac;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  height: 42px;
+  transition: transform .18s ease, background-color .18s ease;
+}
+.btnPrimary:hover { background: #ff4081; transform: translateY(-1px); }
+
+/* tiny polish */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 600px) {
+  .newApptCard { padding: 16px; }
+  .btnPrimary { width: 100%; min-width: 0; }
+}
