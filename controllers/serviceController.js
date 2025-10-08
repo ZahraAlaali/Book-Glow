@@ -17,7 +17,7 @@ exports.addService = async (req, res) => {
   const salonInDatabase = await Salon.findById(req.params.salonId)
   if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
     req.body.salonId = req.params.salonId
-    const serviceInDatabase = await Service.findOne({ name: req.body.name })
+    const serviceInDatabase = await Service.findOne({salonId: req.params.salonId, name: req.body.name })
     if (!serviceInDatabase) {
       const service = await Service.create(req.body)
       res.redirect(`/salon/${req.params.salonId}`)
