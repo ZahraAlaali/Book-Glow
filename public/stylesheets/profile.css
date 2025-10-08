@@ -13,7 +13,6 @@
   font-weight: 700;
 }
 
-/* ===== Two-column layout ===== */
 .profileLayout {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -26,7 +25,6 @@
   }
 }
 
-/* ===== Card ===== */
 .card {
   background: #ffe6f1;
   border-radius: 20px;
@@ -40,7 +38,6 @@
   font-weight: 700;
 }
 
-/* ===== Avatar block ===== */
 .avatarCard {
   text-align: center;
 }
@@ -62,7 +59,6 @@
   display: block;
 }
 
-/* ===== Forms ===== */
 .detailsStack {
   display: grid;
   gap: 18px;
@@ -102,7 +98,6 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(255, 130, 172, 0.25);
 }
 
-/* ===== Buttons (pill) ===== */
 .actions {
   display: flex;
   gap: 10px;
@@ -130,7 +125,6 @@ input:focus {
   transform: translateY(-1px);
 }
 
-/* ===== Tiny polish ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;

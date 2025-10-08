@@ -1,7 +1,6 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -379,4 +378,9 @@ body {
 /* optional: give the block a little spacing from the info */
 .userActions {
   margin-top: 10px;
+}
+
+.appointButtons{
+  display: flex;
+  gap: 20px;
 }
