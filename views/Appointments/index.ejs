@@ -1,16 +1,28 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/appointments.css" />
+  <link rel="stylesheet" href="/stylesheets/button.css" />
+</head>
+
 <%- include("../partials/_navbar") %>
 
-<h1>Here's all the appointments</h1>
+<div class="container section">
+  <header class="pageHeader">
+    <h1>All Appointments</h1>
+  </header>
 
-<ul>
-  <% appointments.forEach(appointment => { %>
-<li>
-  <%= appointment.dateTime.toLocaleString() %>
-  <a href="/appointment/<%= appointment._id %>/showAppointment">View</a>
-  <a href="/appointment/<%= appointment._id %>/edit">Edit</a>
-  <form action="/appointment/<%= appointment._id %>?_method=DELETE" method="POST">
-    <button type="submit">Cancel</button>
-  </form>
-</li>
-  <% }) %>
-</ul>
+  <ul class="appointmentsGrid">
+    <% appointments.forEach(appointment => { %>
+      <li class="apptCard">
+        <p class="datetime"><%= appointment.dateTime.toLocaleString() %></p>
+
+        <div class="actions">
+          <a class="btnPrimary" href="/appointment/<%= appointment._id %>/showAppointment">View</a>
+          <a class="btnGhost"   href="/appointment/<%= appointment._id %>/edit">Edit</a>
+          <form class="inlineForm" action="/appointment/<%= appointment._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btnDanger">Cancel</button>
+          </form>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+</div>

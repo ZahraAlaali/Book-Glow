@@ -141,3 +141,67 @@
     transform: translateY(0);
   }
 }
+/* Services container: 3–5 per row responsively */
+.serviceContainer {
+  display: grid;
+  gap: 25px;
+  margin-top: 30px;
+  width: 90%;
+  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 3–5 across */
+}
+
+/* Service card (kept your look) */
+.serviceList {
+  background-color: #ffe6f1;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.serviceList:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.serviceList p { margin: 8px 0; font-weight: 500; }
+
+/* Put Edit/Delete INSIDE the card */
+.serviceList .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.serviceList .actions form { margin: 0; }
+
+/* Buttons (reuse your button styling) */
+.serviceList button {
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: none;
+  background-color: #ff82ac;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.serviceList button:hover {
+  background-color: #ff4081;
+  transform: scale(1.05);
+}
+
+.serviceContainer {
+  display: grid !important;
+  gap: 25px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+@media (max-width: 900px) { .serviceContainer { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 600px) { .serviceContainer { grid-template-columns: 1fr !important; } }

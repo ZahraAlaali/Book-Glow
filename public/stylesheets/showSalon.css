@@ -1,5 +1,4 @@
 * {
-  padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -11,10 +10,11 @@ body {
   align-items: center;
   background-color: #fff6f9;
   min-height: 100vh;
-  padding-bottom: 50px;
+  padding: 50px;
 }
 
-h2, h3 {
+h2,
+h3 {
   margin: 20px 0 10px;
   color: #333;
 }
@@ -90,3 +90,228 @@ hr {
   background-color: #ccc;
   margin: 15px 0;
 }
+
+
+.page.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 0.25fr; /* ≈ 80% / 20% */
+  gap: 24px;
+  align-items: start;
+}
+
+
+.main {
+  display: grid;
+  gap: 20px;
+}
+
+.comments {
+  position: sticky;
+  top: 12px;
+  max-height: calc(100vh - 30px);
+  overflow: auto;
+  background: #ffe9f0;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.comments h3 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.comments hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 12px 0;
+}
+
+/* Wider right column (≈65% / 35%) */
+.layout {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  gap: 10px;
+  align-items: start;
+  padding: 20px;
+  margin: 20px;
+}
+
+.comments {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: calc(100vh - 30px);
+  overflow: auto;
+  padding: 18px 16px;
+  border-radius: 20px;
+  background: #ffe9f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .comments {
+    position: static;
+    height: auto;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.page.container {
+  max-width: none;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  gap: 24px;
+}
+
+.comments {
+  position: sticky;
+  top: 20px;
+  height: 80vh;
+  overflow: auto;
+  margin: 0;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: none;
+  background: #ffe9f0;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .comments {
+    position: static;
+    height: auto;
+  }
+}
+
+/* Max 3 services per row */
+.serviceContainer {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Responsive: drop to 2, then 1 on small screens */
+@media (max-width: 900px) {
+  .serviceContainer { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .serviceContainer { grid-template-columns: 1fr; }
+}
+/* ==== FORCE MAX 3 PER ROW ==== */
+.serviceContainer {
+  display: grid !important;
+  gap: 25px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* Responsive: drop to 2, then 1 */
+@media (max-width: 900px) {
+  .serviceContainer { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .serviceContainer { grid-template-columns: 1fr !important; }
+}
+
+/* ===== User-side layout ===== */
+.userHero {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.salonImg {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 3px solid #ffc1d8;
+  background: #ffe6f1;
+}
+
+.userInfo { display: grid; gap: 6px; }
+.salonName { margin: 0 0 4px; font-size: 24px; }
+
+/* Book button style (reusing your color system) */
+.btnPrimary {
+  background: #ff82ac;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .18s ease, background-color .18s ease;
+}
+.btnPrimary:hover { background: #ff4081; transform: translateY(-1px); }
+
+.btnGhost {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+.btnGhost:hover { transform: translateY(-1px); }
+
+.svcTitle { font-weight: 600; }
+.svcPrice { color: #333; }
+
+/* Rating card */
+.ratingCard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  padding: 16px;
+  margin-top: 18px;
+}
+.ratingForm { display: grid; gap: 12px; max-width: 520px; }
+.ratingForm textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  background: #fff;
+}
+.ratingActions { display: flex; gap: 10px; align-items: center; }
+
+/* Make stars row compact inside the form */
+.rate { padding: 0; }
+
+.ratingActionsRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+/* Keep the delete form inline so it sits in the same row */
+.deleteForm { display: inline; }
+
+/* Optional: tighten the rating form layout */
+.ratingForm { display: grid; gap: 12px; max-width: 520px; }
