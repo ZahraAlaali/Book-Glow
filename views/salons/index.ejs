@@ -4,28 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../../stylesheets/salonPage.css">
-
+    <link rel="stylesheet" href="../../stylesheets/salonPage.css" />
+    <link rel="stylesheet" href="../../stylesheets/nav.css" />
   </head>
   <body>
-    <%- include("../partials/_navbar.ejs") %>
-    
-    <h4>Hello <%= user.username %>! Start exploring! Find your perfect salon and book your appointment today.</h4>
-
-    <% if(user.role === 'owner'){ %>
-      <h2>My Salons:</h2>
-      <% salons.forEach(salon=>{%>
-        <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
-        <br>
-        <%}) %>
-        <br>
-        <a href="/salon/create"><button>Add Salon</button></a>
+    <nav><%- include("../partials/_navbar.ejs") %></nav>
+    <header>
+       <% if(user.role == 'user'){ %>
+      <h4>
+        Hello <%= user.username %>! Start exploring! Find your perfect salon and
+        book your appointment today.
+      </h4>
       <% } %>
 
-    <% if(user.role == 'user'){ %> <% salons.forEach(salon=>{%>
-      <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
-      <br>
+      <% if(user.role == 'owner'){ %>
+        <h4>Hello <%= user.username %>! Ready to make your salon shine? Add your salon details, manage appointments, and grow your business</h4>
+      <% } %>
+    </header>
+    <main>
+      <% if(user.role === 'owner'){ %>
+      <h2>My Salons:</h2>
+      <% salons.forEach(salon=>{%>
+      <div class="salon">
+        <img src="<%= salon.salonImg %>" alt="salonImg" />
+        <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
+      </div>
+      <br />
       <%}) %>
-    <% } %>
+      <br />
+      <a href="/salon/create"><button>Add Salon</button></a>
+
+      <% } %> <% if(user.role == 'user'){ %> <% salons.forEach(salon=>{%>
+      <div class="salon">
+        <img src="<%= salon.salonImg %>" alt="salonImg" />
+        <a href="/salon/<%= salon._id %>"> <%= salon.name %> </a>
+      </div>
+      <br />
+      <%}) %> <% } %>
+    </main>
   </body>
 </html>
