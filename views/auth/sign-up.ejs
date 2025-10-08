@@ -1,43 +1,20 @@
-<link rel="stylesheet" href="../../stylesheets/sign.css" />
+<link rel="stylesheet" href="../../stylesheets/sign-up.css" />
 <link rel="stylesheet" href="../../stylesheets/nav.css" />
 
-<%- include("../partials/_navbar.ejs") %>
+<%- include('../partials/_navbar') %>
 
-<div>
-  <h1>Create a New Account</h1>
+<div class="sign-container">
+  <h1>Sign Up</h1>
 
   <form action="/auth/sign-up" method="post">
     <label for="username">Username</label>
-    <input type="text" name="username" />
-
-    <br />
+    <input type="text" name="username" id="username" required />
 
     <label for="email">Email</label>
-    <input type="email" name="email" />
-
-    <br />
-
-    <label for="role">Your Role</label>
-    <div class="selection">
-      <select name="role">
-        <option value="user">Customer</option>
-        <option value="owner">Business Owner</option>
-      </select>
-    </div>
-    <label for="phone">Phone Number</label>
-    <input type="number" name="phone" />
-
-    <br />
+    <input type="email" name="email" id="email" required />
 
     <label for="password">Password</label>
-    <input type="password" name="password" />
-
-    <br />
-
-    <label for="ConfirmPassword">Confirm Password</label>
-    <input type="Password" name="confirmPassword" />
-
-    <br />
+    <input type="password" name="password" id="password" required />
 
     <button type="submit">Sign Up</button>
   </form>

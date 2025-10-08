@@ -8,15 +8,15 @@
 
 <%- include('../partials/_navbar') %>
 
-<div class="sign-box">
+<div class="sign-container">
   <h1>Sign In</h1>
 
   <form action="/auth/sign-in" method="post">
     <label for="username">Username</label>
-    <input type="text" name="username" id="username" />
+    <input type="text" name="username" id="username" required />
 
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" />
+    <input type="password" name="password" id="password" required />
 
     <button type="submit">Sign In</button>
   </form>
