@@ -1,1 +1,143 @@
+.profilePage {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 20px 18px 40px;
+}
 
+.pageHeader {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.pageHeader h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* ===== Two-column layout ===== */
+.profileLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .profileLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Card ===== */
+.card {
+  background: #ffe6f1;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  animation: fadeIn 0.25s ease;
+}
+.cardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* ===== Avatar block ===== */
+.avatarCard {
+  text-align: center;
+}
+.avatar {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 3px solid #ffc1d8;
+  background: #fff;
+  margin: 0 auto 12px;
+}
+.uploadForm {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+.fileLabel input[type="file"] {
+  display: block;
+}
+
+/* ===== Forms ===== */
+.detailsStack {
+  display: grid;
+  gap: 18px;
+}
+
+.profileForm,
+.passwordForm {
+  display: grid;
+  gap: 14px;
+  max-width: 560px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+label {
+  font-weight: 600;
+  color: #222;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+input:focus {
+  border-color: #ff82ac;
+  box-shadow: 0 0 0 3px rgba(255, 130, 172, 0.25);
+}
+
+/* ===== Buttons (pill) ===== */
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background: #ff82ac;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  height: 42px;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+.btnPrimary:hover {
+  background: #ff4081;
+  transform: translateY(-1px);
+}
+
+/* ===== Tiny polish ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
