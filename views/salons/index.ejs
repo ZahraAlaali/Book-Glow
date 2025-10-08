@@ -17,16 +17,10 @@
     </div>
   
     <header>
-       <% if(user.role == 'user'){ %>
       <h4>
         Hello <%= user.username %>! Start exploring! Find your perfect salon and
         book your appointment today.
       </h4>
-      <% } %>
-
-      <% if(user.role == 'owner'){ %>
-        <h4>Hello <%= user.username %>! Ready to make your salon shine? Add your salon details, manage appointments, and grow your business</h4>
-      <% } %>
     </header>
     <main>
       <% if(user.role === 'owner'){ %>
