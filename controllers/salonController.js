@@ -1,6 +1,6 @@
 const Salon = require("../models/Salon.js")
 const Service = require("../models/Service")
-const Appointment = require('../models/Appointment')
+const Appointment = require("../models/Appointment")
 const Rating = require("../models/Rating")
 
 exports.salon_create_get = async (req, res) => {
@@ -8,7 +8,6 @@ exports.salon_create_get = async (req, res) => {
 }
 exports.salon_create_post = async (req, res) => {
   const salonInDatabase = await Salon.findOne({ name: req.body.name })
-
   if (salonInDatabase) {
     return res.send("This Salon Already Exist!")
   }
@@ -17,24 +16,49 @@ exports.salon_create_post = async (req, res) => {
   if (phoneNum.length !== 8) {
     return res.send("Phone number must be 8 digits")
   }
+
+  if (req.file) {
+    req.body.salonImg = `/uploads/${req.file.filename}`
+  }
+
   req.body.ownerId = req.session.user._id
+
   const salon = await Salon.create(req.body)
-  res.redirect(`/salon`)
+
+  res.redirect(`/salon/${salon._id}`)
 }
 
 exports.get_index = async (req, res) => {
-  const salons = await Salon.find({ ownerId: req.session.user._id })
+  let salons
+  if (req.session.user.role === "owner") {
+    salons = await Salon.find({
+      ownerId: req.session.user._id,
+    })
+  } else {
+    salons = await Salon.find()
+  }
+
   res.render("salons/index.ejs", { salons })
 }
 
 exports.salon_show_get = async (req, res) => {
   const salon = await Salon.findOne({ _id: req.params.salonId })
-  const services = await Service.find({salonId: req.params.salonId})
-  const appointments = await Appointment.find({salonId:req.params.salonId}).populate("userId").populate("services")
-  const ratings = await Rating.find({salonId: req.params.salonId}).populate("userId")
-  const userRating = await Rating.findOne({salonId: req.params.salonId, userId: req.session.user._id})
-  console.log(userRating)
-  res.render("salons/show.ejs", { salon , appointments, services, ratings, userRating})
+  const services = await Service.find({ salonId: req.params.salonId })
+  const ratings = await Rating.find({ salonId: req.params.salonId }).populate("userId")
+  const appointments = await Appointment.find({ salonId: req.params.salonId })
+    .populate("userId")
+    .populate("services")
+  const userRating = await Rating.findOne({
+    salonId: req.params.salonId,
+    userId: req.session.user._id,
+  })
+  res.render("salons/show.ejs", {
+    salon,
+    appointments,
+    services,
+    ratings,
+    userRating,
+  })
 }
 
 exports.salon_edit_get = async (req, res) => {
@@ -43,6 +67,10 @@ exports.salon_edit_get = async (req, res) => {
 }
 
 exports.salon_update_put = async (req, res) => {
+  const salonInDatabase = await Salon.findOne({ name: req.body.name })
+  if (salonInDatabase) {
+    return res.send("This Salon Already Exist!")
+  }
   const salon = await Salon.findByIdAndUpdate(req.params.salonId, req.body)
   salon.set(req.body)
   await salon.save()
@@ -50,6 +78,29 @@ exports.salon_update_put = async (req, res) => {
 }
 
 exports.salon_delete = async (req, res) => {
+  await Rating.deleteMany({ salonId: req.params.salonId })
+  await Service.deleteMany({ salonId: req.params.salonId })
+  await Appointment.deleteMany({ salonId: req.params.salonId })
   await Salon.findByIdAndDelete(req.params.salonId)
   res.redirect("/salon")
+}
+
+exports.searchBar = async (req, res) => {
+  let outPut
+  let salons
+  req.session.user.role === "owner"
+    ? (salons = await Salon.find({ ownerId: req.session.user._id }))
+    : (salons = await Salon.find())
+  if (!req.body.search) {
+    outPut = salons
+  } else {
+    outPut = salons.filter((salon) => {
+      return (
+        salon.name.toLowerCase().includes(req.body.search.toLowerCase()) ||
+        salon.location.toLowerCase().includes(req.body.search.toLowerCase())
+      )
+    })
+  }
+
+  res.render("salons/index.ejs", { salons: outPut })
 }

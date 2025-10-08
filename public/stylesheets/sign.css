@@ -1,83 +1,105 @@
+/* Reset */
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-div {
+/* Sign-In / Sign-Up container */
+.sign-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  width: 360px;
+  margin: 80px auto; /* centers horizontally */
+  padding: 40px 35px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-div h1 {
-  padding: 20px;
+/* Heading */
+.sign-container h1 {
+  color: #d63384;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(214,51,132,0.3);
 }
 
-div input {
+/* Labels */
+.sign-container label {
+  display: block;
+  text-align: left;
+  margin: 12px 0 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Inputs */
+.sign-container input[type="text"],
+.sign-container input[type="email"],
+.sign-container input[type="password"] {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin-bottom: 15px;
   border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-div label {
-  font-size: 20px;
+.sign-container input:focus {
+  border-color: #d63384;
+  box-shadow: 0 0 5px rgba(214,51,132,0.3);
 }
 
-div button {
+/* Button */
+.sign-container button {
   width: 150px;
   height: 40px;
   border-radius: 15px;
   font-size: 15px;
-  transition: transform 0.2s ease, color 0.2s ease;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-div button:hover {
+.sign-container button:hover {
   transform: scale(1.08);
-  background-color: #ff4081;
-  cursor: pointer;
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
 }
 
-nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  padding: 10px;
+/* Responsive */
+@media (max-width: 400px) {
+  .sign-container {
+    width: 90%;
+    margin: 50px auto;
+    padding: 30px 20px;
+  }
+
+  .sign-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .sign-container button {
+    width: 100%;
+  }
 }
 
-nav a {
-  text-decoration: none;
-  color: black;
-  padding: 5px;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-nav a:hover {
-  transform: scale(1.2);
-  color: #ff4081;
-  cursor: pointer;
-}
-
-.selection select {
-  width: 335px;
-  height: 40px;
-  padding: 5px 10px;
-  border: 1px solid black;
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-}

@@ -1,7 +1,14 @@
+<link rel="stylesheet" href="/stylesheets/nav.css" />
+<link rel="stylesheet" href="/stylesheets/sign.css" />
 <%- include('../partials/_navbar.ejs') %>
+<div>
 <h1>Create a New Salon</h1>
 
-<form action="/salon/create" method="post">
+<form action="/salon/create" method="post" enctype="multipart/form-data">
+  <label for="file">Salon Image</label>
+  <input type="file" name="salonImg" />
+  <br />
+
   <label for="name">Name</label>
   <input type="text" name="name" />
 
@@ -10,12 +17,13 @@
   <label for="location">Location</label>
   <input type="text" name="location" />
 
-  <br>
+  <br />
 
   <label for="phone">Phone Number</label>
   <input type="number" name="phone" />
 
-  <br>
+  <br />
 
   <button type="submit">Add Your Salon</button>
 </form>
+</div>

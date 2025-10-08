@@ -1,45 +1,44 @@
+<link rel="stylesheet" href="/stylesheets/profile.css">
 <%- include('../partials/_navbar.ejs') %>
 
-<h2>Profile</h2>
+<div class="profile-container">
+  <h2>Profile</h2>
 
-<form action="/auth/<%= user._id %>/profile" method="post" enctype="multipart/form-data">
+<div class="upload-section">
+  <form action="/auth/<%= user._id %>/profile" method="post" enctype="multipart/form-data">
+    <img src="<%= user.profileImg %>" alt="Profile Picture" />
 
-  <input type="file" name="profileImg" />
-  <button type="submit">upload</button>
-</form>
+    <label for="profileImg" class="custom-upload">Choose Image</label>
+    <input type="file" id="profileImg" name="profileImg" />
 
+    <button type="submit">Upload</button>
+  </form>
+</div>
 
-<form action="/auth/<%= user._id %>/profile?_method=PUT" method="post">
-  <label for="profileImg">profile Image</label>
-  <img src="<%= user.profileImg %>" alt="" />
-  <br />
-  <label for="username">Username</label>
-  <input type="text" name="username" value="<%= user.username %>" />
+  <form action="/auth/<%= user._id %>/profile?_method=PUT" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" value="<%= user.username %>" />
 
-  <br />
+    <label for="email">Email</label>
+    <input type="email" name="email" value="<%= user.email %>" />
 
-  <label for="email">Email</label>
-  <input type="email" name="email" value="<%= user.email %>" />
+    <label for="phone">Phone Number</label>
+    <input type="number" name="phone" value="<%= user.phone %>" />
 
-  <br />
+    <button type="submit">Update Profile</button>
+  </form>
 
-  <label for="phone">Phone Number</label>
-  <input type="number" name="phone" value="<%= user.phone %>" />
-</form>
+  <h3>Change Password</h3>
+  <form action="/auth/<%= user._id %>?_method=PUT" method="post">
+    <label for="oldPassword">Old Password</label>
+    <input type="password" name="oldPassword" />
 
-<h3>Change Password</h3>
-<form action="/auth/<%= user._id %>?_method=PUT" method="post">
-  <label for="oldPassword">Old Password</label>
-  <input type="password" name="oldPassword" />
-  <br />
+    <label for="newPassword">New Password</label>
+    <input type="password" name="newPassword" />
 
-  <label for="newPassword">New Password</label>
-  <input type="password" name="newPassword" />
-  <br />
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" name="confirmPassword" />
 
-  <label for="confirmPassword">Confirm Password</label>
-  <input type="password" name="confirmPassword" />
-  <br />
-
-  <button type="submit">Change Password</button>
-</form>
+    <button type="submit">Change Password</button>
+  </form>
+</div>

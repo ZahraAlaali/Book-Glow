@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/stylesheets/sign.css" />
+
+<%- include('../partials/_navbar.ejs') %>
+
+<div>
+<h1>Edit Your Salon</h1>
+
+<form action="/salon/<%= salon._id%>?_method=PUT" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="<%= salon.name %>"/>
+
+  <br />
+
+  <label for="location">Location</label>
+  <input type="text" name="location" value="<%= salon.location %>"/>
+
+  <br>
+
+  <label for="phone">Phone Number</label>
+  <input type="number" name="phone"  value="<%= salon.phone %>"/>
+
+  <br>
+
+  <button type="submit">Edit Your Salon</button>
+</form>
+</div>

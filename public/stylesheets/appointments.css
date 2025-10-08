@@ -1,0 +1,78 @@
+.container { width: min(100%, 1100px); margin: 0 auto; padding: 18px; }
+.section   { padding-top: 10px; }
+.pageHeader { text-align: center; margin-bottom: 16px; }
+.pageHeader h1 { font-size: 26px; }
+
+.appointmentsGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) { .appointmentsGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .appointmentsGrid { grid-template-columns: 1fr; } }
+
+body{
+  background-color: #fef7fa;
+  margin: 0;
+
+}
+
+.apptCard {
+  background: #ffe6f1;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.apptCard:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,.14); }
+.datetime { font-weight: 600; }
+
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.inlineForm { display: inline; margin: 0; }
+
+
+.btnPrimary {
+  background: #ff82ac;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.btnPrimary:hover { background: #ff4081; }
+
+.btnGhost {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 8px 14px;
+  text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.btnGhost:hover { transform: translateY(-1px); }
+
+.btnDanger {
+  background: #fc0176;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btnDanger:hover { filter: brightness(0.95); }

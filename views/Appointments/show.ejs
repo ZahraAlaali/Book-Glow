@@ -1,16 +1,25 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/appointmentsShow.css"/>
+</head>
+
 <%- include('../partials/_navbar') %>
 
 <h1>Appointment Details</h1>
 
-<p>Date & Time: <%= userAppointment.dateTime %></p>
-<p>Salon: <%= userAppointment.salonId.name %></p>
+<div class="appointment-container">
+  <p><strong>Date & Time:</strong> <%= userAppointment.dateTime %></p>
+  <p><strong>Salon:</strong> <%= userAppointment.salonId.name %></p>
+  <p><strong>Services:</strong></p>
+  <ul>
+    <% userAppointment.services.forEach(service => { %>
+      <li><%= service.name %></li>
+    <% }) %>
+  </ul>
 
-<a href="/appointment/<%= userAppointment._id %>/edit"
-  >Edit this appointment</a
->
-<form
-  action="/appointment/<%= userAppointment._id %>?_method=DELETE"
-  method="POST"
->
-  <button type="submit">Cancel this appointment!</button>
-</form>
+  <div class="actions">
+    <a href="/appointment/<%= userAppointment._id %>/edit">Edit this appointment</a>
+    <form action="/appointment/<%= userAppointment._id %>?_method=DELETE" method="POST">
+      <button type="submit">Cancel this appointment!</button>
+    </form>
+  </div>
+</div>

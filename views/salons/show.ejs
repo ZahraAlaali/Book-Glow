@@ -1,193 +1,230 @@
 <head>
+  <link rel="stylesheet" href="/stylesheets/showSalon.css" />
   <link rel="stylesheet" href="/stylesheets/serviceStyle.css" />
+  <link rel="stylesheet" href="/stylesheets/button.css" />
+  <link rel="stylesheet" href="/stylesheets/stars.css" />
   <script src="/scripting/script.js" defer></script>
 </head>
 
 <%- include('../partials/_navbar.ejs') %>
+<div class="page container">
+  <div class="layout">
+    <main class="main">
+      <!-- start of user -->
+     <% if (user.role === 'user') { %>
+  <section class="userHero">
+    <img class="salonImg" src="<%= salon.salonImg %>" alt="salon image" />
 
-<!-- start of user -->
-<% if(user.role === 'user'){%>
+    <div class="userInfo">
+      <h2 class="salonName"><%= salon.name %></h2>
+      <p><strong>Name:</strong> <%= salon.name %></p>
+      <p><strong>Phone:</strong> <%= salon.phone %></p>
+      <p><strong>Location:</strong> <%= salon.location %></p>
 
-<h2><%=salon.name%></h2>
-<p>Location: <%= salon.location %></p>
-<p>
-  Contact Us: <br />
-  Phone Number:<%= salon.phone %>
-</p>
+      <div class="userActions">
+        <a href="/appointment/<%= salon._id %>/show/book">
+          <button class="btnPrimary">Book Appointment</button>
+        </a>
+      </div>
+    </div>
+  </section>
 
-<a href="/appointment/<%= salon._id %>/show/book"
-  ><button>Book Appointment</button></a
->
-
-<% services.forEach(service=>{ %>
-<div>
-  <p>Service: <%= service.name %></p>
-  <p>Starting Price: <%= service.price %></p>
-</div>
-<% }) %>
-
-<div>
-  <h3>Rate Our Salon</h3>
-  <% if(userRating) {%>
-  <form
-    action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT"
-    method="post"
-  >
-    <label for="rating">Rating</label>
-    <input
-      type="number"
-      min="0"
-      max="5"
-      name="rating"
-      required
-      value="<%= userRating.rating %>"
-    />
-    <br />
-
-    <label for="comment">Comment</label>
-    <textarea name="comment" id=""><%= userRating.comment %></textarea>
-    <br />
-    <button type="submit">Edit Rating</button>
-  </form>
-  <form
-    action="/rating/<%= salon._id %>/<%= userRating._id %>?_method=DELETE"
-    method="post"
-  >
-    <button type="submit">Delete Rating</button>
-  </form>
-  <% }else{ %>
-  <form action="/rating/<%= salon._id %>/<%= user._id %>" method="post">
-    <label for="rating">Rating</label>
-    <input type="number" min="0" max="5" name="rating" required />
-    <br />
-
-    <label for="comment">Comment</label>
-    <textarea name="comment" id=""></textarea>
-    <br />
-    <button type="submit">Create Rating</button>
-  </form>
-</div>
-<% } %>
-<!-- end of rating -->
-<% } %>
-<!-- end of user -->
-<% if(user.role === 'owner'){%>
-<p>Name: <%= salon.name %></p>
-<p>Phone: <%= salon.phone %></p>
-<p>Location: <%= salon.location %></p>
-
-<a href="/salon/<%= salon._id %>/edit"><button>Edit</button></a>
-<br /><br />
-<form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
-  <button type="submit">Delete</button>
-</form>
-<br />
-
-<!-- services -->
-<% services.forEach(service=>{ %>
-<div>
-  <p>Service: <%= service.name %></p>
-  <p>Starting Price: <%= service.price %></p>
-</div>
-<form
-  action="/service/<%= salon._id %>/<%= service._id %>?_method=DELETE"
-  method="post"
->
-  <button type="submit">Delete</button>
-</form>
-
-<button id="editService">Edit</button>
-
-<form
-  class="editService editFormService"
-  action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT"
-  method="post"
->
-  <h3>Edit Service</h3>
-  <label for="name">Service Title</label>
-  <input type="text" name="name" value="<%= service.name %>" required />
-  <br />
-
-  <label for="price">Starting Price</label>
-  <input
-    type="number"
-    name="price"
-    min="0"
-    value="<%= service.price %>"
-    required
-  />
-  <br />
-
-  <button type="submit">Edit Service</button>
-  <button class="cancelEdit">Cancel</button>
-</form>
-
-<% }) %>
-<!-- end of service forEach -->
-<br />
-<button id="addService">Add Service</button>
-
-<form
-  class="addService addFormService"
-  action="/service/<%= salon._id %>"
-  method="post"
->
-  <h3>Add Service</h3>
-  <label for="name">Service Title</label>
-  <input type="text" name="name" required />
-  <br />
-
-  <label for="price">Starting Price</label>
-  <input type="number" name="price" min="0" required />
-  <br />
-
-  <button type="submit">Add Service</button>
-  <button id="cancelAdd">Cancel</button>
-</form>
-
-<form action="/appointment/<%= salon._id %>/owner?_method=DELETE" method="POST">
-  <form action="/appointment/<%= salon._id %>?_method=DELETE" method="POST">
-    <select name="appointment">
-      <% appointments.forEach(appointment=> {%>
-      <option value="<%= appointment._id %>">
-        <%= appointment.dateTime %>
-      </option>
-      <% }) %>
-    </select>
-    <button type="submit">Delete</button>
-  </form>
-
-  <a href="/appointment/<%= salon._id%>/appointments/new"
-    ><button>Add Appointments</button></a
-  >
-
-  <h3>Booked Appointments</h3>
-  <ul>
-    <% appointments.forEach(appointment => { %>
-    <% if (appointment.userId) {%>
-    <li>
-      <strong>Date:</strong> <%= appointment.dateTime.toLocaleString() %><br>
-      <strong>Booked by:</strong> <%= appointment.userId.username %><br>
-      <strong>Services:</strong>
-      <ul>
-        <% appointment.services.forEach(service => { %>
-        <li><%= service.name %> - $<%= service.price %></li>
-        <% }) %>
-      </ul>
-    </li>
-    <% } %>
-  <% }) %>
-  </ul>
-  <% } %>
-
-  <!-- end of owner -->
-
-  <aside>
-    <h3>Comments Section</h3>
-    <% ratings.forEach(rating=>{ %>
-    <p>Username: <%= rating.userId.username %></p>
-    <p>Rating: <%= rating.rating %></p>
-    <p>Comment: <%= rating.comment %></p>
+  <!-- USER services grid (3 per row) -->
+  <div class="serviceContainer">
+    <% services.forEach(service => { %>
+      <div class="serviceList">
+        <p class="svcTitle">Service: <%= service.name %></p>
+        <p class="svcPrice">Starting Price: <%= service.price %></p>
+      </div>
     <% }) %>
-  </aside>
-</form>
+  </div>
+
+  <!-- Rating card -->
+  <section class="ratingCard">
+    <h3>Rate Our Salon</h3>
+
+    <% if (userRating) { %>
+      <form id="editRatingForm"
+      action="/rating/<%= salon._id %>/<%= user._id %>/<%= userRating._id %>?_method=PUT"
+      method="post"
+      class="ratingForm">
+  <div class="rate">
+          <input type="radio" id="star5" name="rating" value="5" required <%= userRating.rating === 5 ? 'checked' : '' %> />
+          <label for="star5">5 stars</label>
+          <input type="radio" id="star4" name="rating" value="4" required <%= userRating.rating === 4 ? 'checked' : '' %> />
+          <label for="star4">4 stars</label>
+          <input type="radio" id="star3" name="rating" value="3" required <%= userRating.rating === 3 ? 'checked' : '' %> />
+          <label for="star3">3 stars</label>
+          <input type="radio" id="star2" name="rating" value="2" required <%= userRating.rating === 2 ? 'checked' : '' %> />
+          <label for="star2">2 stars</label>
+          <input type="radio" id="star1" name="rating" value="1" required <%= userRating.rating === 1 ? 'checked' : '' %> />
+          <label for="star1">1 star</label>
+        </div>
+
+        <label for="comment">Comment</label>
+        <textarea name="comment" rows="3"><%= userRating.comment %></textarea>
+
+      </form>
+
+<div class="ratingActionsRow">
+  <button type="submit" form="editRatingForm" class="btnPrimary">Edit Rating</button>
+
+  <form action="/rating/<%= salon._id %>/<%= userRating._id %>?_method=DELETE" method="post" class="deleteForm">
+    <button type="submit" class="btnGhost">Delete Rating</button>
+  </form>
+</div>
+    <% } else { %>
+      <form action="/rating/<%= salon._id %>/<%= user._id %>" method="post" class="ratingForm">
+        <div class="rate">
+          <input type="radio" id="star5" name="rating" value="5" required /><label for="star5">5 stars</label>
+          <input type="radio" id="star4" name="rating" value="4" required /><label for="star4">4 stars</label>
+          <input type="radio" id="star3" name="rating" value="3" required /><label for="star3">3 stars</label>
+          <input type="radio" id="star2" name="rating" value="2" required /><label for="star2">2 stars</label>
+          <input type="radio" id="star1" name="rating" value="1" required /><label for="star1">1 star</label>
+        </div>
+
+        <label for="comment">Comment</label>
+        <textarea name="comment" rows="3"></textarea>
+
+        <div class="ratingActions">
+          <button type="submit" class="btnPrimary">Create Rating</button>
+        </div>
+      </form>
+    <% } %>
+  </section>
+<% } %>
+
+      <!-- end of user -->
+
+      <!-- start of owner -->
+      <% if (user.role === 'owner') { %>
+      <div class="ownerSalon">
+        <img src="<%= salon.salonImg %>" alt="salonImg" />
+
+        <p>Name: <%= salon.name %></p>
+
+        <p>Phone: <%= salon.phone %></p>
+        <p>Location: <%= salon.location %></p>
+
+        <div class="buttons">
+          <a href="/salon/<%= salon._id %>/edit"><button>Edit Salon</button></a>
+          <form action="/salon/<%= salon._id %>?_method=DELETE" method="post">
+            <button type="submit">Delete Salon</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- services -->
+      <div class="serviceContainer">
+        <% services.forEach(service => { %>
+        <div class="serviceList">
+          <p>Service: <%= service.name %></p>
+          <p>Starting Price: <%= service.price %></p>
+
+          <div class="actions">
+            <a href="/service/<%= salon._id %>/<%= service._id %>/edit">
+              <button id="editService">Edit</button>
+            </a>
+            <form
+              action="/service/<%= salon._id %>/<%= service._id %>?_method=DELETE"
+              method="post"
+            >
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <!-- end of service forEach -->
+      <br />
+
+      <button id="addService">Add Service</button>
+
+      <div class="serviceForm">
+        <form
+          class="addService addFormService"
+          action="/service/<%= salon._id %>"
+          method="post"
+        >
+          <h3 class="title">Add Service</h3>
+          <label for="name">Service Title</label>
+          <input type="text" name="name" required />
+          <br />
+
+          <label for="price">Starting Price</label>
+          <input type="number" name="price" min="0" required />
+          <br />
+          <div class="buttons">
+            <button type="submit">Add Service</button>
+            <button id="cancelAdd">Cancel</button>
+          </div>
+        </form>
+
+        <% if (appointments.length > 0) { %>
+        <form
+          action="/appointment/<%= salon._id %>/owner?_method=DELETE"
+          method="POST"
+        >
+          <select name="appointment">
+            <% appointments.forEach(appointment => { %>
+            <option value="<%= appointment._id %>">
+              <%= appointment.dateTime %>
+            </option>
+            <% }) %>
+          </select>
+          <button type="submit">Delete</button>
+        </form>
+        <% } %>
+
+        <br />
+        <a href="/appointment/<%= salon._id %>/appointments/new"
+          ><button>Add Appointments</button></a
+        >
+        <a href="/appointment/<%= salon._id %>/owner/appointments"
+          ><button>View Booked Appointment</button></a
+        >
+      </div>
+      <% } %>
+      <!-- end of owner -->
+    </main>
+
+    <aside class="comments">
+      <h3>Comments Section</h3>
+
+      <% ratings.forEach(rating => { %>
+      <div>
+        <div class="rate readonly">
+          <input type="radio" id="<%= rating._id %>-5" name="<%= rating._id %>"
+          value="5" disabled <%= rating.rating === 5 ? 'checked' : '' %> />
+          <label for="<%= rating._id %>-5" title="5 stars">5 stars</label>
+
+          <input type="radio" id="<%= rating._id %>-4" name="<%= rating._id %>"
+          value="4" disabled <%= rating.rating === 4 ? 'checked' : '' %> />
+          <label for="<%= rating._id %>-4" title="4 stars">4 stars</label>
+
+          <input type="radio" id="<%= rating._id %>-3" name="<%= rating._id %>"
+          value="3" disabled <%= rating.rating === 3 ? 'checked' : '' %> />
+          <label for="<%= rating._id %>-3" title="3 stars">3 stars</label>
+
+          <input type="radio" id="<%= rating._id %>-2" name="<%= rating._id %>"
+          value="2" disabled <%= rating.rating === 2 ? 'checked' : '' %> />
+          <label for="<%= rating._id %>-2" title="2 stars">2 stars</label>
+
+          <input type="radio" id="<%= rating._id %>-1" name="<%= rating._id %>"
+          value="1" disabled <%= rating.rating === 1 ? 'checked' : '' %> />
+          <label for="<%= rating._id %>-1" title="1 star">1 star</label>
+        </div>
+
+        <% if (rating.comment) { %>
+        <p>
+          <strong><%= rating.userId.username %>:</strong> <%= rating.comment %>
+        </p>
+        <% } else { %>
+        <p><%= rating.userId.username %></p>
+        <% } %>
+        <hr />
+      </div>
+      <% }) %>
+    </aside>
+  </div>
+</div>

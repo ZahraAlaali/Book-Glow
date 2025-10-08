@@ -1,11 +1,35 @@
-<form action="/service/<%= salon._id %>/<%= service._id %>?_method=PUT" method="post">
-  <label for="name">Service Title</label>
-  <input type="text" name="name" value="<%= service.name %>" required />
-  <br />
+<head>
+  <link rel="stylesheet" href="/stylesheets/serviceEdit.css" />
+  <link rel="stylesheet" href="/stylesheets/button.css" />
+</head>
 
-  <label for="price">Starting Price</label>
-  <input type="number" name="price" min="0" value="<%= service.price %>" required />
-  <br />
+<%- include("../partials/_navbar.ejs") %>
 
-  <button type="submit">Edit Service</button>
-</form>
+<div class="editPage">
+  <header class="pageHeader">
+    <h1>Edit Service</h1>
+  </header>
+
+  <section class="editCard">
+    <form
+      class="editFormService"
+      action="/service/<%= salonId %>/<%= service._id %>?_method=PUT"
+      method="post"
+    >
+      <div class="field">
+        <label for="name">Service Title</label>
+        <input id="name" type="text" name="name" value="<%= service.name %>" required />
+      </div>
+
+      <div class="field">
+        <label for="price">Starting Price</label>
+        <input id="price" type="number" name="price" min="0" value="<%= service.price %>" required />
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btnPrimary">Save Changes</button>
+        <a href="/salon/<%= salonId %>" class="btnGhost">Cancel</a>
+      </div>
+    </form>
+  </section>
+</div>

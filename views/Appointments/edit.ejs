@@ -4,18 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Appointment </title>
+  <link rel="stylesheet" href="/stylesheets/appointmentEdit.css"/>
 </head>
 <body>
 <%- include('../partials/_navbar.ejs') %>
 <h1> Edit Appointment</h1>
+<h3>Salon: <%= appointment.salonId.name %></h3>
+<p>Date & Time: <%= appointment.dateTime %></p>
+<form action="/appointment/<%=appointment._id%>?_method=PUT" method="post">
 
-<form action="/appointments/<%=appointment._id%>?_method=PUT" method="POST">
-<label for="dateTime">Date & Time</label>
-<input type="datetime-local" name="dateTime" id="dateTime" value="<%= appointment.dateTime %>">
-<br>
-
-<label for="salon">Salon</label>
-<input type="text" name="salonId" id="salon"  value="<%= appointment.salonId.name%>">
+  <select name="services" multiple>
+    <% services.forEach(service=>{ %>
+<option value="<%= service._id %>"
+  <% if(appointment.services.includes(service.id)){ %>
+  selected
+<% } %>><%= service.name %> - $<%= service.price %></option>
+  <% }) %>
+  </select>
 <br>
 
 <button type="submit">Edit Appointment</button>

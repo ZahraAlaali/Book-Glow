@@ -1,11 +1,13 @@
 const router = require("express").Router()
 const salonCtrl = require("../controllers/salonController")
+const upload = require("../Middlewares/upload")
+
 
 
 router.get('/create', salonCtrl.salon_create_get)
-router.post('/create', salonCtrl.salon_create_post)
+router.post('/create',upload.single("salonImg"), salonCtrl.salon_create_post)
 
-router.get("", salonCtrl.get_index)
+router.get("/", salonCtrl.get_index)
 
 router.get("/:salonId", salonCtrl.salon_show_get)
 
@@ -14,6 +16,7 @@ router.put('/:salonId' , salonCtrl.salon_update_put)
 
 router.delete('/:salonId', salonCtrl.salon_delete)
 
+router.post("/search", salonCtrl.searchBar)
 
 
 

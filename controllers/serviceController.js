@@ -1,9 +1,10 @@
 const Salon = require("../models/Salon")
 const Service = require("../models/Service")
 
-exports.addService_get = async (req, res) => {
-  const salon = { _id: "68de6ea59b85efa19f5de528" }
-  res.render("services/create.ejs", { salon })
+exports.service_index_get = async (req, res) => {
+  const salon = await Salon.findById(req.params.salonId);
+  const services = await Service.findById({ salonId: salon._id});
+  res.render("services/index.ejs", { salon, services, user: req.user})
 }
 
 // Create salon's services
@@ -11,8 +12,13 @@ exports.addService = async (req, res) => {
   const salonInDatabase = await Salon.findById(req.params.salonId)
   if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
     req.body.salonId = req.params.salonId
-    const service = await Service.create(req.body)
-    res.redirect(`/salon/${req.params.salonId}`)
+    const serviceInDatabase = await Service.findOne({salonId: req.params.salonId, name: req.body.name })
+    if (!serviceInDatabase) {
+      const service = await Service.create(req.body)
+      res.redirect(`/salon/${req.params.salonId}`)
+    } else {
+      res.send("Service already available")
+    }
   } else res.send("error")
 }
 
@@ -31,8 +37,13 @@ exports.editService = async (req, res) => {
 exports.UpdateService = async (req, res) => {
   const salonInDatabase = await Salon.findById(req.params.salonId)
   if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
+    const serviceInDatabase = await Service.findOne({salonId: req.params.salonId, name: req.body.name })
+    if (!serviceInDatabase) {
     await Service.findByIdAndUpdate(req.params.serviceId, req.body)
     res.redirect(`/salon/${req.params.salonId}`)
+    } else{
+      res.send("Service already in database")
+    }
   } else res.send("error")
 }
 

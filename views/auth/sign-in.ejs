@@ -1,19 +1,23 @@
-<link rel="stylesheet" href="../../stylesheets/sign.css" />
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Document</title>
+  <link rel="stylesheet" href="../../stylesheets/sign.css" />
+<link rel="stylesheet" href="../../stylesheets/nav.css" />
 
 <%- include('../partials/_navbar') %>
 
-<div>
-<h1>Sign In</h1>
+<div class="sign-container">
+  <h1>Sign In</h1>
 
-<form action="/auth/sign-in" method="post">
-  <label for="username">Username</label>
-  <input type="text" name="username" id="username" />
-  <br />
+  <form action="/auth/sign-in" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required />
 
-  <label for="Password">Password</label>
-  <input type="password" name="password" id="password" />
-  <br />
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required />
 
-  <button type="submit">Sign In</button>
-</form>
+    <button type="submit">Sign In</button>
+  </form>
 </div>
