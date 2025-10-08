@@ -38,7 +38,7 @@ exports.UpdateService = async (req, res) => {
   const salonInDatabase = await Salon.findById(req.params.salonId)
   if (salonInDatabase && salonInDatabase.ownerId.equals(req.session.user._id)) {
     const serviceInDatabase = await Service.findOne({salonId: req.params.salonId, name: req.body.name })
-    if (!serviceInDatabase) {
+    if (serviceInDatabase._id.equals(req.params.serviceId) ) {
     await Service.findByIdAndUpdate(req.params.serviceId, req.body)
     res.redirect(`/salon/${req.params.salonId}`)
     } else{
