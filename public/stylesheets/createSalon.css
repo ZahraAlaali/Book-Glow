@@ -1,115 +1,126 @@
-/* Reset */
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Cardo", serif;
 }
 
 body {
-  font-family: "Cardo", serif;
-  background: linear-gradient(135deg, #ffe6f0, #fff0f5);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Container */
-.create-salon-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background-color: #fff6f9;
+  min-height: 100vh;
+}
 
-  width: 360px;
-  margin: 80px auto;
-  padding: 40px 35px;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+h1 {
+  margin-bottom: 30px;
+  color: #333;
   text-align: center;
 }
 
-/* Heading */
-.create-salon-container h1 {
-  color: #d63384;
-  font-size: 2rem;
-  margin-bottom: 25px;
-  font-weight: bold;
-  text-shadow: 1px 1px 5px rgba(214,51,132,0.3);
-}
-
-/* Labels */
-.create-salon-container label {
-  display: block;
-  text-align: left;
-  margin: 12px 0 5px;
-  font-weight: 500;
-  color: #555;
-}
-
-/* Inputs */
-.create-salon-container input[type="text"],
-.create-salon-container input[type="number"],
-.create-salon-container .custom-file-input {
+/* ===== Form Container ===== */
+.create-salon-container {
+  background-color: #ffe9f0;
+  border-radius: 20px;
+  padding: 30px 40px;
+  margin-top: 50px;
+  max-width: 600px;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Form ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 500;
+  color: #444;
+}
+
+input[type="text"],
+input[type="number"] {
+  /* Removed input[type="file"] from this selector */
   border: 1px solid #ccc;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.create-salon-container input:focus,
-.create-salon-container .custom-file-input:focus {
-  border-color: #d63384;
-  box-shadow: 0 0 5px rgba(214,51,132,0.3);
-}
-
-/* Style file input to look like text input */
-.create-salon-container .custom-file-input {
-  padding: 8px 10px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
   background-color: #fff;
-  cursor: pointer;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-/* Button Style */
-.create-salon-container button {
-  width: 160px;
-  height: 45px;
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  background: linear-gradient(90deg, #ffb6c1, #ff7f9e);
-  color: #fff;
+input:focus {
+  border-color: #ff82ac;
+}
+
+/* ===== File Input Styling ===== */
+
+/* 1. Hides the default file input button */
+.hidden-file-input {
+  display: none;
+}
+
+/* 2. Styles the label to act as the button */
+.file-label {
+  display: flex; /* Changed to flex to help center content */
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #ff82ac;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  /* Removed line-height: 40px; since flexbox handles centering */
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-top: 5px;
+  overflow: hidden; /* Ensures long file names don't break the button */
+  white-space: nowrap;
+}
+
+.file-label:hover {
+  transform: scale(1.08);
+  background-color: #ff4081;
+}
+
+#file-name-display {
+  /* Ensure the displayed file name text is styled correctly */
+  max-width: 90%; /* Prevent file name from overflowing button */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add "..." for long file names */
+}
+
+/* ===== Buttons ===== */
+button {
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
   border: none;
+  background-color: #ff82ac;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  align-self: center;
 }
 
-.create-salon-container button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
-  background: linear-gradient(90deg, #ff7f9e, #ffb6c1);
+button:hover {
+  transform: scale(1.08);
+  background-color: #ff4081;
 }
 
-/* Responsive */
-@media (max-width: 400px) {
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
   .create-salon-container {
-    width: 90%;
-    margin: 50px auto;
-    padding: 30px 20px;
-  }
-
-  .create-salon-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .create-salon-container button {
-    width: 100%;
+    padding: 20px;
   }
 }
