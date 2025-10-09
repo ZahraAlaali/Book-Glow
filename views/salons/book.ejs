@@ -16,7 +16,7 @@
   <h2>Choose Services:</h2>
   <select name="services" multiple>
   <% services.forEach(service => { %>
-    <option value="<%= service._id %>"><%= service.name %> - $<%= service.price %></option>
+    <option value="<%= service._id %>"><%= service.name %> - BD<%= service.price %></option>
   <%})%>
 </select>
 </div>
