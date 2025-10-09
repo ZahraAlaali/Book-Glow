@@ -38,7 +38,7 @@
         <% services.forEach(service => { %>
         <div class="serviceList">
           <p class="svcTitle">Service: <%= service.name %></p>
-          <p class="svcPrice">Starting Price: <%= service.price %></p>
+          <p class="svcPrice">Starting Price: <%= service.price %>BD</p>
         </div>
         <% }) %>
       </div>
@@ -169,7 +169,7 @@
         <% services.forEach(service => { %>
         <div class="serviceList">
           <p>Service: <%= service.name %></p>
-          <p>Starting Price: <%= service.price %></p>
+          <p>Starting Price: <%= service.price %>BD</p>
 
           <div class="actions">
             <a href="/service/<%= salon._id %>/<%= service._id %>/edit">
