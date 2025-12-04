@@ -10,7 +10,7 @@ exports.salon_create_post = async (req, res) => {
   const salonInDatabase = await Salon.findOne({ name: req.body.name })
   if (salonInDatabase) {
     return res.send("This Salon Already Exist!")
-  }
+}
 
   const phoneNum = req.body.phone
   if (phoneNum.length !== 8) {
